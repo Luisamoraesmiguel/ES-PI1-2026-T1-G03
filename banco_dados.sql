@@ -18,18 +18,12 @@ Num_votacao INT NOT NULL UNIQUE,
 Partido VARCHAR(10) NOT NULL 
 ); 
 
-CREATE TABLE votacao( 
+CREATE TABLE votos( 
 Id INT PRIMARY KEY AUTO_INCREMENT, 
-Candidato INT, 
-Quant_votos INT, 
+Candidato INT,  
 Datahora DATETIME, 
 Protocolo_votacao VARCHAR(20) 
 ); 
 
 ALTER TABLE votacao 
 ADD FOREIGN KEY (Candidato) REFERENCES candidatos(id); 
-
- 
-
- 
-
