@@ -19,10 +19,10 @@ Partido VARCHAR(10) NOT NULL
 ); 
 
 CREATE TABLE votos( 
-Id INT PRIMARY KEY AUTO_INCREMENT, 
-Candidato INT,  
-Datahora DATETIME, 
-Protocolo_votacao VARCHAR(20) 
+Id INT PRIMARY KEY AUTO_INCREMENT NOT NULL, 
+Candidato INT NOT NULL,  
+Datahora DATETIME NOT NULL, 
+Protocolo_votacao VARCHAR(20) NOT NULL UNIQUE
 ); 
 
 ALTER TABLE votos 
