@@ -25,5 +25,5 @@ Datahora DATETIME,
 Protocolo_votacao VARCHAR(20) 
 ); 
 
-ALTER TABLE votacao 
+ALTER TABLE votos 
 ADD FOREIGN KEY (Candidato) REFERENCES candidatos(id); 
