@@ -33,3 +33,9 @@ MODIFY Protocolo_votacao VARCHAR(20) NOT NULL;
 
 ALTER TABLE votos 
 MODIFY Candidato INT NOT NULL;
+
+ALTER TABLE eleittores 
+MODIFY mesario BOOLEAN NOT NULL;
+
+ALTER TABLE eleitores
+MODIFY votou BOOLEAN NOT NULL;
