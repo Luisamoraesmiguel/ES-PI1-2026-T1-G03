@@ -34,8 +34,9 @@ MODIFY Protocolo_votacao VARCHAR(20) NOT NULL;
 ALTER TABLE votos 
 MODIFY Candidato INT NOT NULL;
 
-ALTER TABLE eleittores 
-MODIFY mesario BOOLEAN NOT NULL;
 
 ALTER TABLE eleitores
-MODIFY votou BOOLEAN NOT NULL;
+MODIFY mesario CHAR(2) NOT NULL CHECK (mesario IN ('S', 'N'));
+
+ALTER TABLE eleitores
+MODIFY votou CHAR(2) NOT NULL CHECK (votou IN ('S', 'N'));
