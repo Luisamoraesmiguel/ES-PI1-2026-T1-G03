@@ -77,7 +77,7 @@ def cadastro():
         mesario = input("O eleitor é mesário? (S/N): ")
         print("Eleitor cadastrado com sucesso!")
         cpf_cifrado = criptografia.cifrar(cpf)
-        status = banco.cadastrar_eleitor(nome, titulo, cpf_cifrado)
+        sucesso = banco.cadastrar_eleitor(nome, titulo, cpf_cifrado)
         if sucesso == 1:
             print("\nEleitor cadastrado e criptografado com sucesso!")
         else:
