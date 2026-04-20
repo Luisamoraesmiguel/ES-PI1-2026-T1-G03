@@ -1,4 +1,8 @@
 from validacoes.cpf import validar_cpf
+import criptografia 
+import random
+#add import do menu do banco de dados, quando for criado
+import
 
 # ( !!! APENAS COMENTÁRIOS - APAGAR DEPOIS !!! )
 # Menus Feitos: Gerenciamento, Votação 
@@ -74,6 +78,12 @@ def cadastro():
         titulo = input("Digite o número do título de eleitor: ")
         mesario = input("O eleitor é mesário? (S/N): ")
         print("Eleitor cadastrado com sucesso!")
+        cpf_cifrado = criptografia.cifrar(cpf)
+        sucesso = banco.cadastrar_eleitor(nome, titulo, cpf_cifrado)
+        if sucesso == 1:
+            print("\nEleitor cadastrado e criptografado com sucesso!")
+        else:
+            print("\nErro ao salvar no banco de dados.")
     
     else:
         print("A opção escolhida é Inválida\n")
