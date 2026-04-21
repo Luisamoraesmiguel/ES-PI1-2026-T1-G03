@@ -1,37 +1,26 @@
-# Criptografia
-import numpy as np
+import base64
 
-CHAVE = np.array([[3, 3], [2, 5]])
-
+CHAVE = [[3, 3], [2, 5]]
 
 def cifrar(texto):
-    """Criptografa um texto usando a Cifra de Hill com duplicação de caractere ímpar.
-    
-    Args:
-        texto (str): O dado original (CPF, Chave ou Protocolo).
-        
-    Returns:
-        str: O texto cifrado pronto para o banco de dados."""
-    
     numeros = [ord(c) for c in texto]
     
     if len(numeros) % 2 != 0:
-        numeros.append(numeros[-1]) 
-        
+        numeros.append(numeros[-1])
+    
     resultado = []
-    
     for i in range(0, len(numeros), 2):
-        bloco = np.array([numeros[i], numeros[i+1]])
+        a = numeros[i]
+        b = numeros[i+1]
         
+        novo_a = (CHAVE[0][0] * a + CHAVE[0][1] * b) % 256
+        novo_b = (CHAVE[1][0] * a + CHAVE[1][1] * b) % 256
+        
+        resultado.append(novo_a)
+        resultado.append(novo_b)
     
-        cifrado = np.dot(CHAVE, bloco) % 256 
-        
-        resultado.append(int(cifrado[0]))
-        resultado.append(int(cifrado[1]))
-        
-    return "".join(chr(n) for n in resultado)
-#para testar, apagar depois!!!!
-cpf=str(input("Digite o CPF: "))
-resultado = cifrar(cpf)
-print("Lista de números gerados:", [ord(c) for c in resultado])
-print("Tamanho total:", len(resultado))
+    return base64.b64encode(bytes(resultado)).decode('utf-8')
+
+# Teste - apagar depois!
+cpf = input("Digite o CPF: ")
+print("Cifrado:", cifrar(cpf))
