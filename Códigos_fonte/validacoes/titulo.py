@@ -4,10 +4,10 @@ def verificar_titulo(titulo):
     if len(titulo) != 12 and titulo.isdigit():
             return False
    #Separar as partes  
-    sequencial = titulo[:8]   # 8 primeiros dígitos
-    uf_digitos = titulo[8:10] # 9º e 10º dígitos (UF)
-    dv1 = int(titulo[10])     # 11º dígito (1º DV)
-    dv2 = int(titulo[11])     # 12º dígito (2º DV)
+    sequencial = titulo_n[:8]   # 8 primeiros dígitos
+    uf_digitos = titulo_n[8:10] # 9º e 10º dígitos (UF)
+    dv1 = int(titulo_n[10])     # 11º dígito (1º DV)
+    dv2 = int(titulo_n[11])     # 12º dígito (2º DV)
 
     uf = int(uf_digitos)
     soma1 = 0
