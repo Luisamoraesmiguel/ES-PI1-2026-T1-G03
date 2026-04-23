@@ -3,9 +3,11 @@ from Códigos_fonte.validacoes.cpf import validar_cpf
 from Códigos_fonte.validacoes.titulo import verificar_titulo
 import Criptografia 
 import Códigos_fonte.cadastro as acao_cadastro
-import random
+import time
+import os # para limpar a tela, se necessário
+#import random
 #add import do menu do banco de dados, quando for criado
-from validacoes import titulo
+#from validacoes import titulo
 
 # ( !!! APENAS COMENTÁRIOS - APAGAR DEPOIS !!! )
 # Menus Feitos: Gerenciamento, Votação 
@@ -58,8 +60,10 @@ def gerenciamento():
         busca()
     elif(i==4):
         listar()
+    
     elif(i==0):
         principal()
+    
 
 
 def cadastro():
@@ -141,11 +145,11 @@ def listar():
   
 
 
-#======== VOTAÇÃO ============================
+#======== SISTEMA DE VOTAÇÃO ============================
 
-def votacao():
-    print("\n== VOTAÇÃO ==")
-    print("1- Sistema de Votação")
+def sistema_votacao():
+    print("\n== SISTEMA DE VOTAÇÃO ==")
+    print("1- Abertura da Votação")
     print("2- Auditoria")
     print("3- Resultado")
     print("0- Voltar")
@@ -153,7 +157,7 @@ def votacao():
     i=int(input("Escolha a Opção Desejada: "))
 
     if(i==1):
-        sistemaVotacao()
+        abertura_votacao()
     elif(i==2):
         auditoria()
     elif(i==3):
@@ -162,18 +166,59 @@ def votacao():
         principal()
 
 
-#=== SISTEMA DE VOTAÇÃO ===
-def sistemaVotacao():
-    print("\n== SISTEMA DE VOTAÇÃO ==")
+#=== ABERTURA DA VOTAÇÃO ===
+def abertura_votacao():
+        os.system('clear')  # Limpa a tela para melhor visualização
+        print("\n== ABERTURA DO SISTEMA DE VOTAÇÃO ==")
+
+        #Validação do mesário
+        print("\n IDENTIFICAÇÃO DO MESÁRIO")
+        titulo= input("Digite o número do título de eleitor do mesário: ")
+        cpf = input("Digite o CPF do mesário: ")
+        chave = input("Digite a chave de acesso do mesário: ")
+        
+        if verificar_mesario(titulo, cpf, chave):
+            print("Mesário identificado com sucesso!")
+            input("Pressione Enter para realizar a Zerezima")
+
+        #ZEREZIMA
+
+        votacao= input("Deseja continuar o processo de votação? (S/N): ")
+        if votacao == 'S' or votacao == 's':
+            menu_votacao()
+
+        elif votacao == 'N' or votacao == 'n':
+            print("retornando para menu do sistema de votação...")
+            sistema_votacao()
+        while votacao != 'S' and votacao != 'N' and votacao != 's' and votacao != 'n':
+            print("Opção inválida. Por favor, digite 'S' para sim ou 'N' para não.")
+            votacao = input("Deseja continuar o processo de votação? (S/N): ")
+            
+            
+def menu_votacao():
+    os.system('clear')  # Limpa a tela para melhor visualização
+    print("\n== MENU DE OPERAÇÃO DA URNA ==")
     print("1- Votar")
     print("2- Encerrar Votação")
-    print("3- Validar Mesário")
     print("0- Voltar")
+        
+        i=int(input("Escolha a Opção Desejada: "))
 
-    i=int(input("Escolha a Opção Desejada: "))
+        if(i==0):
+            sistema_votacao()
 
-    if(i==0):
-        votacao()
+        elif(i==1):
+            votacao()
+
+        elif(i==2):
+            encerramento_votacao()
+
+#== VOTACAO == 
+def votacao():
+
+#== ENCERRAMENTO DA VOTAÇÃO ===
+def encerramento_votacao():
+
 
 
 #== AUDITORIA ===
@@ -187,7 +232,7 @@ def auditoria():
     i=int(input("Escolha a Opção Desejada: "))
 
     if(i==0):
-        votacao()
+        sistema_votacao()
 
 
 #== RESULTADO ===
@@ -199,7 +244,7 @@ def resultado():
     i=int(input("Escolha a Opção Desejada: "))
 
     if(i==0):
-        votacao()
+        sistema_votacao()
 
 if __name__ == "__main__":
     principal()
