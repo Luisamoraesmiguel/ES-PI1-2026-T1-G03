@@ -8,6 +8,7 @@ from Códigos_fonte.zerezima import zerezima
 from remover_eleitor import apagar_eleitor_do_banco as remover_eleitor
 import mysql.connector  
 import time
+import chave
 import os # para limpar a tela, se necessário
 #import random
 #add import do menu do banco de dados, quando for criado
@@ -81,7 +82,7 @@ def cadastro():
         gerenciamento()
     
     elif(i==1):
-        nome = input("Digite o nome do eleitor: ")
+        nome = input("Digite o nome completo do eleitor: ")
         titulo = ""
         cpf = ""
         mesario = input("O eleitor é mesário? (S/N): ")
@@ -101,11 +102,14 @@ def cadastro():
                 print("Título de eleitor válido.")
              else:
                 print("Título de eleitor inválido. Por favor, tente novamente.")
+        
+        senha = chave.gerar_chave(nome)
                 
         print('Nome:', nome)
         print('Título:', titulo)
         print('CPF:', cpf)
         print('Mesário:', mesario)
+        print('Senha: ',senha)
 
         cpf_cifrado = Criptografia.cifrar(cpf)
         sucesso = acao_cadastro.cadastrar_eleitor(nome, titulo, cpf_cifrado, mesario)
