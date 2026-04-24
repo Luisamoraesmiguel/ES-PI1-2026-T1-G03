@@ -3,6 +3,8 @@ from Códigos_fonte.validacoes.cpf import validar_cpf
 from Códigos_fonte.validacoes.titulo import verificar_titulo
 import Criptografia 
 import Códigos_fonte.cadastro as acao_cadastro
+from Códigos_fonte.validacoes.mesario import verificar_mesario
+from Códigos_fonte.zerezima import zerezima 
 import time
 import os # para limpar a tela, se necessário
 #import random
@@ -177,11 +179,19 @@ def abertura_votacao():
         cpf = input("Digite o CPF do mesário: ")
         chave = input("Digite a chave de acesso do mesário: ")
         
-        if verificar_mesario(titulo, cpf, chave):
-            print("Mesário identificado com sucesso!")
-            input("Pressione Enter para realizar a Zerezima")
+        while not verificar_mesario(titulo, cpf, chave):
+            print("Mesário não identificado. Por favor, tente novamente.")
+            titulo= input("Digite o número do título de eleitor do mesário: ")
+            cpf = input("Digite o CPF do mesário: ")
+            chave = input("Digite a chave de acesso do mesário: ")
 
-        #ZEREZIMA
+        print("Mesário identificado com sucesso!")
+        input("Pressione Enter para realizar a Zerezima")
+
+        while not zerezima():
+                print("Erro ao realizar a Zerezima. Por favor, tente novamente.")
+                input("Pressione Enter para realizar a Zerezima")
+        print("Zerezima realizada com sucesso!")
 
         votacao= input("Deseja continuar o processo de votação? (S/N): ")
         if votacao == 'S' or votacao == 's':
