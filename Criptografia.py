@@ -35,3 +35,29 @@ def cifrar(texto):
 #resultado = cifrar(cpf)
 #print("Lista de números gerados:", [ord(c) for c in resultado])
 #print("Tamanho total:", len(resultado))
+
+def decifrar(texto_cifrado):
+    """Decifra um texto cifrado usando a Cifra de Hill.
+    
+    Args:
+        texto_cifrado (str): O texto cifrado a ser decifrado.
+        
+    Returns:
+        str: O texto original decifrado."""
+    
+    numeros = [ord(c) for c in texto_cifrado]
+    
+    resultado = []
+    
+    for i in range(0, len(numeros), 2):
+        bloco = np.array([numeros[i], numeros[i+1]])
+        
+        # Matriz inversa da chave para decifrar
+        CHAVE_INVERSA = np.linalg.inv(CHAVE).dot(np.linalg.det(CHAVE)) % 256
+        
+        decifrado = np.dot(CHAVE_INVERSA, bloco) % 256
+        
+        resultado.append(int(decifrado[0]))
+        resultado.append(int(decifrado[1]))
+        
+    return "".join(chr(n) for n in resultado)
