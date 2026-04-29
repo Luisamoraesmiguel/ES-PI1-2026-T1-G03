@@ -37,27 +37,23 @@ def cifrar(texto):
 #print("Tamanho total:", len(resultado))
 
 def decifrar(texto_cifrado):
-    """Decifra um texto cifrado usando a Cifra de Hill.
-    
-    Args:
-        texto_cifrado (str): O texto cifrado a ser decifrado.
-        
-    Returns:
-        str: O texto original decifrado."""
-    
     numeros = [ord(c) for c in texto_cifrado]
-    
     resultado = []
-    
+
+    # Inversa correta da matriz [[3,3],[2,5]] mod 256
+    # det = 3*5 - 3*2 = 9, e 9 * 57 mod 256 = 1, então det_inv = 57
+    det_inv = 57
+    CHAVE_INVERSA = [
+        [det_inv * 5  % 256, det_inv * (-3) % 256],
+        [det_inv * (-2) % 256, det_inv * 3  % 256]
+    ]
+
     for i in range(0, len(numeros), 2):
-        bloco = np.array([numeros[i], numeros[i+1]])
-        
-        # Matriz inversa da chave para decifrar
-        CHAVE_INVERSA = np.linalg.inv(CHAVE).dot(np.linalg.det(CHAVE)) % 256
-        
-        decifrado = np.dot(CHAVE_INVERSA, bloco) % 256
-        
-        resultado.append(int(decifrado[0]))
-        resultado.append(int(decifrado[1]))
-        
+        a = numeros[i]
+        b = numeros[i+1]
+        x = (CHAVE_INVERSA[0][0] * a + CHAVE_INVERSA[0][1] * b) % 256
+        y = (CHAVE_INVERSA[1][0] * a + CHAVE_INVERSA[1][1] * b) % 256
+        resultado.append(x)
+        resultado.append(y)
+
     return "".join(chr(n) for n in resultado)

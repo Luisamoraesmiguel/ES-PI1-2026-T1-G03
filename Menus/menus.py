@@ -202,14 +202,19 @@ def abertura_votacao():
         #Validação do mesário
         print("\n IDENTIFICAÇÃO DO MESÁRIO")
         titulo= input("Digite o número do título de eleitor do mesário: ")
-        cpf = input("Digite os 4 ultimos digitos do CPF do mesário: ")
-        chave = input("Digite a chave de acesso do mesário: ")
+        cpf = input("Digite os 4 primeiros dígitos do CPF do mesário: ")
+        chave = input("Digite a chave de acesso do mesário: ").upper().strip()  # Converte para maiúsculas e remove espaços extras
         
         while not verificar_mesario(titulo, cpf, chave):
             print("Mesário não identificado. Por favor, tente novamente.")
+            N=input("Deseja tentar novamente? (S/N): ")
+            if N == 'N' or N == 'n':
+                print("Retornando ao menu do sistema de votação...")
+                sistema_votacao()
             titulo= input("Digite o número do título de eleitor do mesário: ")
-            cpf = input("Digite o CPF do mesário: ")
-            chave = input("Digite a chave de acesso do mesário: ")
+            cpf = input("Digite os 4 primeiros dígitos do CPF do mesário: ")
+            chave = input("Digite a chave de acesso do mesário: ").upper().strip()  # Converte para maiúsculas e remove espaços extras
+
 
         print("Mesário identificado com sucesso!")
         input("Pressione Enter para realizar a Zerezima")
