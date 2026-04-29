@@ -6,6 +6,7 @@ from Códigos_fonte.cadastro import cadastrar_candidato
 from Códigos_fonte.edicao.rever_chave import rever_chave_acesso
 from Códigos_fonte.cadastro import cadastrar_eleitor
 from Votacao.Abertura import abertura_votacao
+import busca_eleitor as buscar
 import time
 import os # para limpar a tela, se necessário
 #import random
@@ -128,12 +129,20 @@ def edicao():
 
 def busca():
     print("\n== Busca ==")
+    print("1- Pesquisar")
     print("0- Voltar")
+    
 
     i=int(input("Escolha a Opção Desejada: "))
 
     if(i==0):
         gerenciamento()
+    elif(i==1):
+        dado=input("Digite o CPF (sem espaços) ou o Título: ")
+        resultado = buscar.buscar_eleitor(dado)
+        print(resultado)
+
+
 
 def listar():
     print("\n== LISTAR ==")
