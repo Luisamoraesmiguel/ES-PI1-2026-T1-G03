@@ -6,6 +6,7 @@ import Códigos_fonte.cadastro as acao_cadastro
 from Códigos_fonte.validacoes.mesario import verificar_mesario
 from Códigos_fonte.zerezima import zerezima 
 from remover_eleitor import apagar_eleitor_do_banco as remover_eleitor
+from Códigos_fonte.edicoes import editar_eleitor
 
 import time
 import chave
@@ -127,7 +128,9 @@ def edicao():
     print("\n== EDIÇÃO ==")
     print("0- Voltar")
     print("1- Remover Eleitor")
-
+    print("2- Editar Eleitor")
+    print("3- Editar Candidato")
+    print("4- Rever Chave de Acesso")
     i=int(input("Escolha a Opção Desejada: "))
 
     if(i==0):
@@ -145,7 +148,12 @@ def edicao():
         else:
             print("Operação de remoção cancelada. Retornando ao menu de edição...")
             edicao()    
-
+    
+    elif(i==2):
+        editar_eleitor()
+    
+    elif(i==3):
+        
 
 
 def busca():

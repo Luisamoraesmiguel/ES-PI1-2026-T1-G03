@@ -1,15 +1,11 @@
 
-import mysql.connector
+import conexao  
 from Criptografia import decifrar
+
 
 def verificar_mesario(titulo, cpf_4digitos, chave):
     
-    conexao = mysql.connector.connect(
-        host='127.0.0.1',
-        user='root',
-        password='sabrina9728', # Se tiver senha, coloque aqui
-        database='tabela_bd'
-    )   
+    conexao = conectar()
     cursor = conexao.cursor()
     
     # Comando SQL para verificar se o mesário existe no banco de dados

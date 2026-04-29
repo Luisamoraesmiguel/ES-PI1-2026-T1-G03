@@ -1,17 +1,14 @@
-import mysql.connector
+from conexao import conectar
 from datetime import datetime
 
 # Essa é a função que o professor quer
 def gravar_voto_no_banco(numero_escolhido):
     #try:
         # 1. Abre a conexao 
-    conexao = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="",
-        database="tabela_bd"
-        )
+
+    conexao = conectar()
     cursor = conexao.cursor()
+
 
     # Pegar data e hora do voto
     data_hora_voto = datetime.now().strftime("%Y-%m-%d %H:%M:%S") # Formata a data e hora para o formato do MySQL

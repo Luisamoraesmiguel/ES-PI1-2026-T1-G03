@@ -1,3 +1,4 @@
+from conexao import conectar
 import mysql.connector
 
 def cadastrar_eleitor(nome, cpf_cifrado, titulo, mesario, votou, senha):
@@ -14,13 +15,13 @@ def cadastrar_eleitor(nome, cpf_cifrado, titulo, mesario, votou, senha):
     """
     #try:
         # Tenta conectar ao banco de dados
-    conexao = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="", # Se tiver senha, coloque aqui
-        database="tabela_bd"
+    #conexao = mysql.connector.connect(
+        #host="localhost",
+       #user="root",
+        #password="sabrina9728", # Se tiver senha, coloque aqui
+        #database="tabela_bd"
     )
-        
+    conexao = conectar()
     cursor = conexao.cursor()
 
         # Comando para inserir os dados na tabela

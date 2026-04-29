@@ -1,16 +1,12 @@
+from conexao import conectar
 import mysql.connector
 
 def apagar_eleitor_do_banco(titulo_digitado):
         
     #try:    
         # 1. Abre a conexao (Use a sua senha aqui!)
-        conexao = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="", 
-            database="tabela_bd"
-        )
-        cursor = conexao.cursor()
+    conexao = conectar()
+    cursor = conexao.cursor()
 
         # 2. Comando para DELETAR (Onde o titulo for igual ao digitado)
         comando_sql = "DELETE FROM eleitores WHERE titulo = %s"
