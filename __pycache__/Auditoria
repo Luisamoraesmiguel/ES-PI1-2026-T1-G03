@@ -1,0 +1,95 @@
+import mysql.connector
+from mysql.connectorError,  #import quando pronto o erro (quando tiver algo inválido para registrar)
+import config
+import os
+import Criptografia
+
+def run_query(cursor, query):
+    """Executa query e retorna todas as linhas."""
+    cursor.execute(query)
+    return cursor.fetchall()
+
+def ler_listas_log(path):
+    """Lê arquivo de log retornando linhas como lista; cria se inexistente."""
+    if not os.path.exists(path):
+        return []
+    with open(path, "r", encoding="utf-8") as f:
+        return [line.strip() for line in f.readlines()]
+
+def validar_logs(lines):
+    """Verifica presença das mensagens obrigatórias e formata ocorrência encontrada."""
+    exigencias = {
+        "ABERTURA": "ABERTURA: Votação iniciada com sucesso. Total de votos zerado.",
+        "ENCERRAMENTO": "ENCERRAMENTO: Votação finalizada com sucesso.",
+        "ALERTA": "ALERTA: Tentativa de acesso negado",
+        "DUPLO": "ALERTA: Tentativa de voto duplo",
+        "SUCESSO_VOTO": "SUCESSO: Voto realizado com sucesso"
+    }
+    found = {k: False for k in exigencias}
+    for line in lines:
+        for k, patt in exigencias.items():
+            if patt in line:
+                found[k] = True
+    return found
+
+def main():
+    """Executa a auditoria: conecta ao DB, roda queries, valida logs e tenta decifrar protocolos (se possível)."""
+    try:
+        conn = mysql.connector.connect(
+            host=config.DB_HOST,
+            port=config.DB_PORT,
+            user=config.DB_USER,
+            password=config.DB_PASSWORD,
+            database=config.DB_DATABASE
+        )
+        cursor = conn.cursor(dictionary=True)
+
+        with open("db/audit_queries.sql", "r", encoding="utf-8") as f:
+            sql_text = f.read()
+        for q in [q.strip() for q in sql_text.split(";") if q.strip()]:
+            try:
+                rows = run_query(cursor, q)
+                print(f"--- RESULTADO DA QUERY ---\n{q}\n{rows}\n")
+            except Exception as e:
+                print(f"Erro ao executar query: {e}\nQuery: {q}\n")
+
+        cursor.execute("SELECT COUNT(*) AS total_registros_votos FROM votos")
+        total_votos = cursor.fetchone()["total_registros_votos"]
+        cursor.execute("SELECT SUM(CASE WHEN status = 'Ja Votou' THEN 1 ELSE 0 END) AS ja_votaram FROM eleitores")
+        ja_votaram = cursor.fetchone()["ja_votaram"] or 0
+        print(f"Total registros na tabela votos: {total_votos}")
+        print(f"Total eleitores com status 'Ja Votou': {ja_votaram}")
+        if total_votos == ja_votaram:
+            print("VALIDACAO_INTEGRIDADE: OK - números coincidem.")
+        else:
+            print("VALIDACAO_INTEGRIDADE: FALHA - discrepância encontrada.")
+
+        logs = ler_listas_log(config.LOG_FILE_PATH)
+        found = validar_logs(logs)
+        print("Validação de logs (presença das mensagens obrigatórias):")
+        for k, v in found.items():
+            print(f"{k}: {'ENCONTRADO' if v else 'NAO_ENCONTRADO'}")
+
+        cursor.execute("SELECT protocolo_criptografado FROM votos LIMIT 20")
+        protos = cursor.fetchall()
+        for p in protos:
+            ctext = p.get("protocolo_criptografado")
+            if not ctext:
+                continue
+            try:
+                plain = Criptografia.decrypt_hill(ctext, config.HILL_KEY_MATRIX)
+                print(f"PROTOCOLO_CIFRADO: {ctext} -> DECIFRADO (ex.): {plain}")
+            except Exception as e:
+                print(f"Não foi possível decifrar protocolo {ctext}: {e}")
+#se o error nao tiver pronto ainda, colocar dps (o msm do import)
+    except mysql.connector.Error as e:
+        print(f"Erro de conexão com banco MySQL: {e}")
+    finally:
+        try:
+            cursor.close()
+            conn.close()
+        except:
+            pass
+
+if __name__ == "__main__":
+    main()
