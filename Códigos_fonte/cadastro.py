@@ -20,7 +20,7 @@ def cadastrar_eleitor(nome, cpf_cifrado, titulo, mesario, votou, senha):
        #user="root",
         #password="sabrina9728", # Se tiver senha, coloque aqui
         #database="tabela_bd"
-    )
+    
     conexao = conectar()
     cursor = conexao.cursor()
 
@@ -47,3 +47,33 @@ def cadastrar_eleitor(nome, cpf_cifrado, titulo, mesario, votou, senha):
         #if 'conexao' in locals() and conexao.is_connected():
             #cursor.close()
             #conexao.close()
+
+
+def cadastrar_candidato():
+    nome = input("Digite o nome do candidato: ")
+    partido = input("Digite o partido do candidato: ")
+    numero = input("Digite o número do candidato: ")
+
+    while not numero.isdigit():
+        print("Digite o número do candidato com apenas dígitos ")
+        numero = int('Digite o número do candidato: ')
+
+    conexao = conectar()
+    cursor = conexao.cursor()
+
+    cursor.execute("SELECT numero FROM candidatos WHERE numero = %s", (numero,))
+    if cursor.fetchone() is not None:
+        print("Número de candidato já existe. Tente novamente.")
+        cursor.close()
+        conexao.close()
+        return
+
+
+    sql = 'INSERT INTO candidatos ( nome, partido, numero) VALUES (%s, %s, %s)'
+    valores = (nome, partido, numero)
+    cursor.execute(sql, valores)
+    conexao.commit()
+    print("Candidato cadastrado com sucesso!")
+    cursor.close()
+    conexao.close()
+

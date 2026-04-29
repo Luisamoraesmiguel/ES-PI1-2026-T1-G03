@@ -5,9 +5,11 @@ import Criptografia
 import Códigos_fonte.cadastro as acao_cadastro
 from Códigos_fonte.validacoes.mesario import verificar_mesario
 from Códigos_fonte.zerezima import zerezima 
-from remover_eleitor import apagar_eleitor_do_banco as remover_eleitor
-from Códigos_fonte.edicoes import editar_eleitor
-
+from Códigos_fonte.edicao.remover_eleitor import apagar_eleitor_do_banco as remover_eleitor
+from Códigos_fonte.edicao.eleitor import editar_eleitor
+from Códigos_fonte.edicao.candidato import editar_candidato
+from Códigos_fonte.cadastro import cadastrar_candidato
+from Códigos_fonte.edicao.rever_chave import rever_chave_acesso
 import time
 import chave
 import os # para limpar a tela, se necessário
@@ -75,6 +77,7 @@ def cadastro():
     print("\n== CADASTRO ==")
     print("0- Voltar")
     print("1- Cadastrar Eleitor")
+    print("2- Cadastrar Candidato")
 
     i=int(input("Escolha a Opção Desejada: "))
 
@@ -119,6 +122,9 @@ def cadastro():
             print("\nEleitor cadastrado e criptografado com sucesso!")
         else:
             print("\nErro ao salvar no banco de dados.")
+
+    elif(i==2):
+        cadastrar_candidato()
     
     else:
         print("A opção escolhida é Inválida\n")
@@ -153,7 +159,12 @@ def edicao():
         editar_eleitor()
     
     elif(i==3):
-        
+        editar_candidato()
+    
+    elif(i==4):
+        rever_chave_acesso()
+    
+
 
 
 def busca():
