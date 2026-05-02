@@ -7,7 +7,7 @@ def editar_eleitor():
 
     conexao = conectar()
     cursor = conexao.cursor()
-    cursor.execute("SELECT * FROM eleitores WHERE titulo = %s", (titulo,)) # Busca o eleitor pelo título
+    cursor.execute("SELECT * FROM eleitores WHERE titulo = %s", (titulo,)) 
     eleitor = cursor.fetchone()
 
     if eleitor is None:
