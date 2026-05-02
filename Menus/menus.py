@@ -117,8 +117,26 @@ def edicao():
         busca()
     elif(i==5):
         rever_chave_acesso()
-    
 
+    
+def listar_eleitores():
+    from conexao import conectar
+    conexao = conectar()
+    cursor = conexao.cursor()
+    cursor.execute("SELECT nome, titulo, mesario FROM eleitores")
+    eleitores = cursor.fetchall()
+    cursor.close()
+    conexao.close()
+
+    if not eleitores:
+        print("Nenhum eleitor cadastrado.")
+    else:
+        print("\n== LISTA DE ELEITORES ==")
+        for e in eleitores:
+            print(f"Nome: {e[0]} | Título: {e[1]} | Mesário: {e[2]}")
+    
+    input("\nPressione Enter para voltar...")
+    busca()
 
 
 def busca():
@@ -136,7 +154,8 @@ def busca():
         dado=input("Digite o CPF (sem espaços) ou o Título: ")
         resultado = buscar.buscar_eleitor(dado)
         print(resultado)
-    #elif(i==2):
+    elif(i==2):
+        listar_eleitores()
 
 
 
