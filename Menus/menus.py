@@ -7,6 +7,7 @@ from Códigos_fonte.edicao.rever_chave import rever_chave_acesso
 from Códigos_fonte.cadastro import cadastrar_eleitor
 from Votacao.Abertura import abertura_votacao
 import busca_eleitor as buscar
+from Códigos_fonte.edicao.lista import listar_eleitores
 import time
 import os # para limpar a tela, se necessário
 #import random
@@ -53,7 +54,7 @@ def gerenciamento():
     elif(i==2):
         edicao()
     elif(i==3):
-        listar()
+        listar_eleitores()
 
     
     elif(i==0):
@@ -119,24 +120,6 @@ def edicao():
         rever_chave_acesso()
 
     
-def listar_eleitores():
-    from conexao import conectar
-    conexao = conectar()
-    cursor = conexao.cursor()
-    cursor.execute("SELECT nome, titulo, mesario FROM eleitores")
-    eleitores = cursor.fetchall()
-    cursor.close()
-    conexao.close()
-
-    if not eleitores:
-        print("Nenhum eleitor cadastrado.")
-    else:
-        print("\n== LISTA DE ELEITORES ==")
-        for e in eleitores:
-            print(f"Nome: {e[0]} | Título: {e[1]} | Mesário: {e[2]}")
-    
-    input("\nPressione Enter para voltar...")
-    busca()
 
 
 def busca():
