@@ -1,9 +1,8 @@
 def validar_cpf(cpf):
-    cpf = ''.join(filter(str.isdigit, cpf))  # Remove caracteres não numéricos
+    cpf = ''.join(filter(str.isdigit, cpf))  
     if len(cpf) != 11 or cpf == cpf[0] * 11:
         return False
-
-# Calculo do primeiro digito 
+ 
     soma = 0 
     soma += int (cpf[0]) * 10
     soma += int (cpf[1]) * 9
@@ -26,7 +25,6 @@ def validar_cpf(cpf):
             digito1 = resultado
 
             
-# Calculo do segundo digito
     soma = 0
     soma += int (cpf[0]) * 11
     soma += int (cpf[1]) * 10

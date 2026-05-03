@@ -1,4 +1,3 @@
-
 from conexao import conectar
 from Criptografia import decifrar
 
@@ -8,7 +7,6 @@ def verificar_mesario(titulo, cpf_4digitos, chave):
     conexao = conectar()
     cursor = conexao.cursor()
     
-    # Comando SQL para verificar se o mesário existe no banco de dados
     sql = "SELECT cpf, mesario FROM eleitores WHERE titulo = %s AND chave_de_acesso = %s "
     cursor.execute(sql, (titulo, chave))
     resultado = cursor.fetchone()

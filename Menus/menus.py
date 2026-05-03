@@ -20,15 +20,13 @@ import os # para limpar a tela, se necessário
 
  
 
-#lista de menus
-
 def principal():
     print("\n== MENU PRINCIPAL ==")
-    print("1- Gerenciamento")
+    print("\n1- Gerenciamento")
     print("2- Votação")
     print("0- Sair")
 
-    i=int(input("Escolha a Opção Desejada: "))
+    i=int(input("\nEscolha a Opção Desejada: "))
     
     if(i==1):
         gerenciamento()
@@ -39,20 +37,15 @@ def principal():
     
     return i
     
- #====================================================   
-
-
-#======== GERENCIAMENTO ============================
 
 def gerenciamento():
     print("\n== GERENCIAMENTO ==")
-    print("1- Cadastro")
+    print("\n1- Cadastro")
     print("2- Edição")
-    print("3- Busca")
-    print("4- Listar")
+    print("3- Listar")
     print("0- Voltar")
 
-    i=int(input("Escolha a Opção Desejada: "))
+    i=int(input("\nEscolha a Opção Desejada: "))
 
 
     if(i==1):
@@ -60,9 +53,8 @@ def gerenciamento():
     elif(i==2):
         edicao()
     elif(i==3):
-        busca()
-    elif(i==4):
         listar()
+
     
     elif(i==0):
         principal()
@@ -71,11 +63,11 @@ def gerenciamento():
 
 def cadastro():
     print("\n== CADASTRO ==")
-    print("0- Voltar")
+    print("\n0- Voltar")
     print("1- Cadastrar Eleitor")
     print("2- Cadastrar Candidato")
 
-    i=int(input("Escolha a Opção Desejada: "))
+    i=int(input("\nEscolha a Opção Desejada: "))
 
     if(i==0):
         gerenciamento()
@@ -92,12 +84,13 @@ def cadastro():
 
 def edicao():
     print("\n== EDIÇÃO ==")
-    print("0- Voltar")
+    print("\n0- Voltar")
     print("1- Remover Eleitor")
     print("2- Editar Eleitor")
     print("3- Editar Candidato")
-    print("4- Rever Chave de Acesso")
-    i=int(input("Escolha a Opção Desejada: "))
+    print("4- Buscar Eleitor")
+    print("5- Rever Chave de Acesso")
+    i=int(input("\nEscolha a Opção Desejada: "))
 
     if(i==0):
         gerenciamento()
@@ -120,16 +113,35 @@ def edicao():
     
     elif(i==3):
         editar_candidato()
-    
     elif(i==4):
+        busca()
+    elif(i==5):
         rever_chave_acesso()
-    
 
+    
+def listar_eleitores():
+    from conexao import conectar
+    conexao = conectar()
+    cursor = conexao.cursor()
+    cursor.execute("SELECT nome, titulo, mesario FROM eleitores")
+    eleitores = cursor.fetchall()
+    cursor.close()
+    conexao.close()
+
+    if not eleitores:
+        print("Nenhum eleitor cadastrado.")
+    else:
+        print("\n== LISTA DE ELEITORES ==")
+        for e in eleitores:
+            print(f"Nome: {e[0]} | Título: {e[1]} | Mesário: {e[2]}")
+    
+    input("\nPressione Enter para voltar...")
+    busca()
 
 
 def busca():
     print("\n== Busca ==")
-    print("1- Pesquisar")
+    print("\n1- Pesquisar")
     print("2- Listar")
     print("0- Voltar")
     
@@ -137,38 +149,34 @@ def busca():
     i=int(input("Escolha a Opção Desejada: "))
 
     if(i==0):
-        gerenciamento()
+        edicao()
     elif(i==1):
         dado=input("Digite o CPF (sem espaços) ou o Título: ")
         resultado = buscar.buscar_eleitor(dado)
         print(resultado)
     elif(i==2):
+        listar_eleitores()
 
 
 
 def listar():
     print("\n== LISTAR ==")
-    print("0- Voltar")
+    print("\n0- Voltar")
 
-    i=int(input("Escolha a Opção Desejada: "))
+    i=int(input("\nEscolha a Opção Desejada: "))
 
     if(i==0):
         gerenciamento()
 
-#====================================================
-  
-
-
-#======== SISTEMA DE VOTAÇÃO ============================
 
 def sistema_votacao():
     print("\n== SISTEMA DE VOTAÇÃO ==")
-    print("1- Abertura da Votação")
+    print("\n1- Abertura da Votação")
     print("2- Auditoria")
     print("3- Resultado")
     print("0- Voltar")
 
-    i=int(input("Escolha a Opção Desejada: "))
+    i=int(input("\nEscolha a Opção Desejada: "))
 
 
     if(i==1):
@@ -187,11 +195,11 @@ def sistema_votacao():
 def menu_votacao():
     os.system('clear')  # Limpa a tela para melhor visualização
     print("\n== MENU DE OPERAÇÃO DA URNA ==")
-    print("1- Votar")
+    print("\n1- Votar")
     print("2- Encerrar Votação")
     print("0- Voltar")
         
-    i=int(input("Escolha a Opção Desejada: "))
+    i=int(input("\nEscolha a Opção Desejada: "))
 
 
     if(i==0):
@@ -206,39 +214,35 @@ def menu_votacao():
     return i
     
 
-#== VOTACAO == 
 def votacao():
     print("\n== VOTAÇÃO ==")
-    print("1- Votar")
+    print("\n1- Votar")
     pass
 
-#== ENCERRAMENTO DA VOTAÇÃO ===
 def encerramento_votacao():
     print("\nEncerrando a votação...")
-    time.sleep(2)  # Simula o processo de encerramento
-    print("Votação encerrada com sucesso!")
+    time.sleep(2)  
+    print("\nVotação encerrada com sucesso!")
     input("Pressione Enter para retornar ao menu do sistema de votação.")
     sistema_votacao()
 
 
-#== AUDITORIA ===
 def auditoria():
     print("\n== AUDITORIA ==")
-    print("1- Log de Ocorrência")
+    print("\n1- Log de Ocorrência")
     print("2- Protocolo")
     print("3- Exibir Log")
     print("0- Voltar")
 
-    i=int(input("Escolha a Opção Desejada: "))
+    i=int(input("\nEscolha a Opção Desejada: "))
 
     if(i==0):
         sistema_votacao()
 
 
-#== RESULTADO ===
 def resultado():
     print("\n== RESULTADO ==")
-    print("1- Boletim de Urna")
+    print("\n1- Boletim de Urna")
     print("0- Voltar")
 
     i=int(input("Escolha a Opção Desejada: "))

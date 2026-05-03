@@ -1,4 +1,3 @@
-# Criptografia
 import numpy as np
 
 CHAVE = np.array([[3, 3], [2, 5]])
@@ -40,8 +39,6 @@ def decifrar(texto_cifrado):
     numeros = [ord(c) for c in texto_cifrado]
     resultado = []
 
-    # Inversa correta da matriz [[3,3],[2,5]] mod 256
-    # det = 3*5 - 3*2 = 9, e 9 * 57 mod 256 = 1, então det_inv = 57
     det_inv = 57
     CHAVE_INVERSA = [
         [det_inv * 5  % 256, det_inv * (-3) % 256],

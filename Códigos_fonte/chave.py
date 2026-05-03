@@ -3,9 +3,6 @@ import Criptografia
 
 def gerar_chave(nome_completo):
 
-    #.strip() - Remove todos espaços
-    #.upper() - Deixa todas letras em maiúsculo
-    #.split() - Divide o nome em uma lista
     partes_nome = nome_completo.strip().upper().split()
 
     if len(partes_nome) < 1:

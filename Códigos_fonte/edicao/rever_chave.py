@@ -5,7 +5,7 @@ def rever_chave_acesso():
     conexao = conectar()
     cursor = conexao.cursor()
     cursor.execute("SELECT chave_de_acesso FROM eleitores WHERE titulo = %s", (titulo,))
-    resultado = cursor.fetchone() # Busca a chave de acesso do eleitor pelo título
+    resultado = cursor.fetchone() 
     if resultado:
         chave_de_acesso = resultado[0]
         print(f"A chave de acesso do eleitor com título {titulo} é: {chave_de_acesso}")

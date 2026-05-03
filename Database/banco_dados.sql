@@ -1,7 +1,7 @@
 CREATE DATABASE IF NOT EXISTS tabela_bd;
 USE tabela_bd;
 
-CREATE TABLE eleitores( 
+CREATE TABLE eleitores ( 
 id INT PRIMARY KEY AUTO_INCREMENT, 
 nome VARCHAR(100), 
 cpf VARCHAR(100) NOT NULL UNIQUE, 
@@ -11,14 +11,14 @@ chave_de_acesso VARCHAR(50) UNIQUE NOT NULL,
 votou CHAR (2) NOT NULL
 ); 
 
-CREATE TABLE candidatos(  
+CREATE TABLE candidatos (  
 Id INT PRIMARY KEY AUTO_INCREMENT, 
 Nome VARCHAR(100) NOT NULL, 
 Num_votacao INT NOT NULL UNIQUE, 
 Partido VARCHAR(10) NOT NULL 
 ); 
 
-CREATE TABLE votos( 
+CREATE TABLE votos ( 
 Id INT PRIMARY KEY AUTO_INCREMENT NOT NULL, 
 Candidato INT,  
 Datahora DATETIME NOT NULL, 
@@ -41,3 +41,9 @@ MODIFY mesario CHAR(1) NOT NULL CHECK (mesario IN ('S', 'N'));
 ALTER TABLE eleitores
 MODIFY votou CHAR(1) NOT NULL CHECK (votou IN ('S', 'N'));
 
+CREATE TABLE auditoria (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario VARCHAR(100),      
+    acao VARCHAR(250), 
+    data_hora DATETIME DEFAULT CURRENT_TIMESTAMP 
+);

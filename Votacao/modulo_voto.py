@@ -7,7 +7,6 @@ def realizar_votacao():
     titulo=input("Digite o seu Título de Eleitor: ")
     voto=input("Digite o número do seu candidato: ")
 
-    #Comando pro Banco de dados
     comando_sql = "INSERT INTO votos (titulo, numero, data_voto) VALUES (%s, %s, NOW())"
     dados_voto = (titulo, voto)
     cursor.execute(comando_sql, dados_voto)
