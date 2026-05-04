@@ -6,6 +6,7 @@ from Códigos_fonte.cadastro import cadastrar_candidato
 from Códigos_fonte.edicao.rever_chave import rever_chave_acesso
 from Códigos_fonte.cadastro import cadastrar_eleitor
 from Votacao.Abertura import abertura_votacao
+from Votacao import processo_votacao
 import Códigos_fonte.edicao.busca_eleitor as buscar
 from Códigos_fonte.edicao.lista import listar_eleitores
 from Códigos_fonte.edicao.lista import listar_candidatos
@@ -201,9 +202,8 @@ def menu_votacao():
     
 
 def votacao():
-    print("\n== VOTAÇÃO ==")
-    print("\n1- Votar")
-    pass
+    processo_votacao.realizar_fluxo_votacao()
+    menu_votacao() # Volta para o menu de votação após concluir um voto
 
 def encerramento_votacao():
     print("\nEncerrando a votação...")
