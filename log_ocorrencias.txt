@@ -1,0 +1,2 @@
+[REGISTRO]: 1, 99, datetime.datetime2026, 4, 22, 17, 34, 52
+[REGISTRO]: 2, 99, datetime.datetime2026, 4, 22, 17, 36, 11

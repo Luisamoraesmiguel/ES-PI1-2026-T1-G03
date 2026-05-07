@@ -160,8 +160,8 @@ def busca():
         edicao()
     elif(i==1):
         dado=input("Digite o CPF (sem espaços) ou o Título: ")
-        resultado = buscar.buscar_eleitor(dado)
-        print(resultado)
+        resultado = buscar(dado)
+        #print(resultado)
     elif(i==2):
         listar_eleitores()
 
