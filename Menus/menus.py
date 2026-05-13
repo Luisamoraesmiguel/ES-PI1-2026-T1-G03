@@ -9,7 +9,8 @@ from Votacao.Abertura import abertura_votacao
 from Criptografia import cifrar
 from Códigos_fonte.edicao.busca_eleitor import buscar_eleitor as buscar
 from Códigos_fonte.edicao.busca_eleitor import buscar_candidato
-import time
+from Resultado.vts_partido import votos_por_partido 
+from Resultado.boletim import boletim_da_urna
 import os 
 import random
 import string
@@ -279,15 +280,26 @@ def auditoria():
 def resultado():
     print("\n== RESULTADO ==")
     print("\n1- Boletim de Urna")
+    print("2- Resultado Final")
+    print("3- Votos por partido")
+    print("4- Votos por candidato")
+    print("5- Estatistica de comparecimento")
+    print("6- Validação de integridade")
     print("0- Voltar")
 
     i=int(input("Escolha a Opção Desejada: "))
 
     if(i==0):
         sistema_votacao()
+    elif(i==1):
+        boletim_da_urna()
+    elif(i==2):
+        pass
 
-if __name__ == "__main__":
-    principal()
+    elif(i==3):
+        votos_por_partido()
+
+
 
 def menu_encerrar_sistema():
     from Votacao.encerrar_votacao import executar_encerramento_logica
@@ -299,3 +311,8 @@ def menu_encerrar_sistema():
         exit()
     else:
         return
+    
+
+
+if __name__ == "__main__": # Início do programa
+    principal()
