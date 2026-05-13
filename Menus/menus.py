@@ -160,7 +160,7 @@ def busca():
         edicao()
     elif(i==1):
         dado=input("Digite o CPF (sem espaços) ou o Título: ")
-        resultado = buscar.buscar_eleitor(dado)
+        resultado = buscar(dado)
         print(resultado)
     elif(i==2):
         listar_eleitores()
@@ -225,7 +225,20 @@ def menu_votacao():
 def votacao():
     print("\n== VOTAÇÃO ==")
     print("\n1- Votar")
+    print("2- Encerrar Votação")
     print("0- Voltar")
+
+    i=int(input("\nEscolha a Opção Desejada: "))
+    if(i==0):
+        menu_votacao()
+    elif(i==1):
+        from Votacao.registrar_voto import registrar_voto
+        registrar_voto()
+    elif(i==2):
+        encerramento_votacao()
+    else:
+        print("A opção escolhida é Inválida\n")
+        menu_votacao()
 
 def encerramento_votacao():
     letras = ''.join(random.choices(string.ascii_uppercase, k=2))
@@ -256,8 +269,8 @@ def auditoria():
         sistema_votacao()
     elif(i==1):
         print("\n== LOG DE OCORRÊNCIA ==")
-        from log import exibir_log
-        exibir_log()
+        from Votacao.log import exibir_logs
+        exibir_logs()
         input("\nPressione Enter para voltar...")
         auditoria()
     elif(i==2):
