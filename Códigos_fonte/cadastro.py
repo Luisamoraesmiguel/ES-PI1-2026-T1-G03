@@ -1,5 +1,5 @@
 import Criptografia
-import Códigos_fonte.chave as chave
+from Códigos_fonte import chave
 from conexao import conectar
 from Códigos_fonte.validacoes.cpf import validar_cpf
 from Códigos_fonte.validacoes.titulo import verificar_titulo

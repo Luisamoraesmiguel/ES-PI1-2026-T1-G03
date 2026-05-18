@@ -41,3 +41,9 @@ MODIFY mesario CHAR(1) NOT NULL CHECK (mesario IN ('S', 'N'));
 ALTER TABLE eleitores
 MODIFY votou CHAR(1) NOT NULL CHECK (votou IN ('S', 'N'));
 
+CREATE TABLE auditoria (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario VARCHAR(100),      
+    acao VARCHAR(250), 
+    data_hora DATETIME DEFAULT CURRENT_TIMESTAMP 
+);

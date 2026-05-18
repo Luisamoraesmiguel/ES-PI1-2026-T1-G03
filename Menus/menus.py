@@ -1,4 +1,6 @@
-
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from Códigos_fonte.edicao.remover_eleitor import apagar_eleitor_do_banco as remover_eleitor
 from Códigos_fonte.edicao.eleitor import editar_eleitor
 from Códigos_fonte.edicao.candidato import editar_candidato
@@ -9,18 +11,7 @@ from Votacao.Abertura import abertura_votacao
 import busca_eleitor as buscar
 import time
 import os # para limpar a tela, se necessário
-#import random
-#add import do menu do banco de dados, quando for criado
-#from validacoes import titulo
 
-# ( !!! APENAS COMENTÁRIOS - APAGAR DEPOIS !!! )
-# Menus Feitos: Gerenciamento, Votação 
-# Submenus Feitos: Cadastro, Edição, Busca, Listar, Sistema de Votação, Auditoria, Resultado
-# Até agora a função "voltar" de todos funciona. Só os últimos submenus inacabados tem funções que quebram o programa
-
- 
-
-#lista de menus
 
 def principal():
     print("\n== MENU PRINCIPAL ==")
@@ -39,10 +30,6 @@ def principal():
     
     return i
     
- #====================================================   
-
-
-#======== GERENCIAMENTO ============================
 
 def gerenciamento():
     print("\n== GERENCIAMENTO ==")
@@ -143,6 +130,7 @@ def busca():
         resultado = buscar.buscar_eleitor(dado)
         print(resultado)
     elif(i==2):
+        listar_eleitores()
 
 
 
@@ -155,11 +143,6 @@ def listar():
     if(i==0):
         gerenciamento()
 
-#====================================================
-  
-
-
-#======== SISTEMA DE VOTAÇÃO ============================
 
 def sistema_votacao():
     print("\n== SISTEMA DE VOTAÇÃO ==")
@@ -206,13 +189,12 @@ def menu_votacao():
     return i
     
 
-#== VOTACAO == 
 def votacao():
     print("\n== VOTAÇÃO ==")
     print("1- Votar")
     pass
 
-#== ENCERRAMENTO DA VOTAÇÃO ===
+
 def encerramento_votacao():
     print("\nEncerrando a votação...")
     time.sleep(2)  # Simula o processo de encerramento
@@ -221,7 +203,6 @@ def encerramento_votacao():
     sistema_votacao()
 
 
-#== AUDITORIA ===
 def auditoria():
     print("\n== AUDITORIA ==")
     print("1- Log de Ocorrência")
@@ -234,8 +215,6 @@ def auditoria():
     if(i==0):
         sistema_votacao()
 
-
-#== RESULTADO ===
 def resultado():
     print("\n== RESULTADO ==")
     print("1- Boletim de Urna")
