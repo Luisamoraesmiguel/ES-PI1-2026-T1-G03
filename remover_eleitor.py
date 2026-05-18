@@ -14,5 +14,5 @@ def apagar_eleitor_do_banco(titulo_digitado):
     print(f"\n[SUCESSO] Eleitor com título {titulo_digitado} removido com sucesso!")
 
    
-    cursor.close() # Fecha o cursor
+    cursor.close() 
     conexao.close()
