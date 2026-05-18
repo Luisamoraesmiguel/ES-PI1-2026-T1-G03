@@ -1,4 +1,5 @@
 from Menus import menus
+(Get-Content main.py) | Where-Object { $_ -notmatch '^\s*#' } | Set-Content main.py
 # ( !!! APENAS COMENTÁRIOS - APAGAR DEPOIS !!! )
 # O programa começa aqui com um loop. Depois da opção escohida a lógica acontece toda em menus.py (não sei se é a melhor ideia)
 # A parte dos menus foi feita até certo ponto - É preciso terminar os submenus e as funções deles
