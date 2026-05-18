@@ -4,8 +4,8 @@ def conectar():
     return mysql.connector.connect(
         host='127.0.0.1',
         user='root',
-        password='Fer0827x#',
+        password='Beatriz_190524',
         database='tabela_bd'
     )
-conectar()
+#conectar()
 #from conexao import conectar
