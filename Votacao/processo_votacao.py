@@ -1,12 +1,15 @@
 import os
-import time
 from Códigos_fonte.edicao.busca_eleitor import buscar_candidato as busca
 from Códigos_fonte.validacoes import eleitor_validacao
 from Votacao import registrar_voto
 from Votacao.log import registrar_log
 
+def limpar_tela():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 def realizar_fluxo_votacao():
 
+    limpar_tela()
     print("\n" + "="*30)
     print("      URNA ELETRÔNICA")
     print("="*30)
