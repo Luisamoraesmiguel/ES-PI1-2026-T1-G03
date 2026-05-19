@@ -7,7 +7,7 @@ def limpar_tela():
 def relatorio_integridade():
     
     conexao = conectar()
-    cursor = conexao.cursor()
+    cursor = conexao.cursor(buffered=True)
 
     cursor.execute("SELECT * FROM votos")
     total_votos = cursor.fetchone()[0]
