@@ -11,17 +11,7 @@ from Resultado.vts_candidato import votos_por_candidato
 from Resultado.boletim import boletim_da_urna
 from Resultado.validar_integridade import relatorio_integridade
 import os, random, string, time
-# para limpar a tela, se necessário
-#import random
-#add import do menu do banco de dados, quando for criado
-#from validacoes import titulo
 
-# ( !!! APENAS COMENTÁRIOS - APAGAR DEPOIS !!! )
-# Menus Feitos: Gerenciamento, Votação 
-# Submenus Feitos: Cadastro, Edição, Busca, Listar, Sistema de Votação, Auditoria, Resultado
-# Até agora a função "voltar" de todos funciona. Só os últimos submenus inacabados tem funções que quebram o programa
-
- 
 
 def principal():
     os.system('cls')
@@ -85,7 +75,7 @@ def cadastro():
         cadastrar_candidato()
     
     else:
-        print("A opção escolhida é Inválida\n")
+        print("A opção escolhida é Inválida")
     
 
 def edicao():
@@ -206,7 +196,7 @@ def sistema_votacao():
 
 
 def menu_votacao():
-    os.system('cls')  # Limpa a tela para melhor visualização
+    os.system('cls')  
     print("\n== MENU DE OPERAÇÃO DA URNA ==")
     print("\n1- Votar")
     print("2- Encerrar Votação")
@@ -327,5 +317,5 @@ def menu_encerrar_sistema():
     
 
 
-if __name__ == "__main__": # Início do programa
+if __name__ == "__main__"
     principal()
