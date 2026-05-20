@@ -16,7 +16,7 @@ def validar_identidade_eleitor(titulo, cpf_4digitos, chave):
     if eleitor is None:
         cursor.close()
         conexao.close()
-        return "INVALIDO" # Título ou chave errados
+        return "INVALIDO"
     
     
     if eleitor['votou'] == 'S':
