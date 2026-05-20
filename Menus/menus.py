@@ -4,22 +4,13 @@ from Códigos_fonte.edicao.candidato import editar_candidato
 from Códigos_fonte.edicao.rever_chave import rever_chave_acesso
 from Códigos_fonte.edicao.busca_eleitor import buscar_eleitor as buscar, buscar_candidato
 from Códigos_fonte.cadastro import cadastrar_candidato, cadastrar_eleitor
+from Códigos_fonte.validacoes.cpf import validar_cpf
 from Votacao.Abertura import abertura_votacao
 from Criptografia import cifrar
 from Resultado.vts_partido import votos_por_partido
 from Resultado.boletim import boletim_da_urna
 import os, random, string
-# para limpar a tela, se necessário
-#import random
-#add import do menu do banco de dados, quando for criado
-#from validacoes import titulo
-
-# ( !!! APENAS COMENTÁRIOS - APAGAR DEPOIS !!! )
-# Menus Feitos: Gerenciamento, Votação 
-# Submenus Feitos: Cadastro, Edição, Busca, Listar, Sistema de Votação, Auditoria, Resultado
-# Até agora a função "voltar" de todos funciona. Só os últimos submenus inacabados tem funções que quebram o programa
-
- 
+from Códigos_fonte.validacoes.titulo import verificar_titulo
 
 def principal():
     os.system('cls')
@@ -248,13 +239,26 @@ def votacao():
 def encerramento_votacao():
     letras = ''.join(random.choices(string.ascii_uppercase, k=2))
     digitos = ''.join(random.choices(string.digits, k=5))
-    protocolo_original = f"V{letras}2600{digitos}"
-    protocolo_cifrado = cifrar(protocolo_original)
+    
+    print("\nEncerramento de votação")
+    nome = input("Digite o nome completo do mesário: ").upper().strip()
+    titulo = ""
+    cpf = ""
 
-    print(f"\nProtocolo de Encerramento: {protocolo_original}")
-    print(f"Protocolo cifrado: {protocolo_cifrado}")
 
-    print("\nEncerrando a votação...")
+    while not validar_cpf(cpf):
+        cpf = input("Digite o CPF do eleitor (apenas números): ")
+        if not validar_cpf(cpf):
+            print("CPF inválido. Por favor, tente novamente.")
+
+    titulo_valido = False
+    while not titulo_valido:
+        titulo = input("Digite o número do título de eleitor: ")
+        if verificar_titulo(titulo):
+            titulo_valido = True
+            print("Título de eleitor válido.")
+        else:
+            print("Título de eleitor inválido. Por favor, tente novamente.")
     time.sleep(2)
     print("\nVotação encerrada com sucesso!")
     input("Pressione Enter para retornar ao menu do sistema de votação.")
