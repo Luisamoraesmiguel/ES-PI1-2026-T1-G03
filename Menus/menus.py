@@ -238,6 +238,7 @@ def votacao():
     elif(i==1):
         from Votacao.registrar_voto import registrar_voto
         registrar_voto()
+        menu_votacao()
     elif(i==2):
         encerramento_votacao()
     else:
