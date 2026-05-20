@@ -11,6 +11,7 @@ from Resultado.vts_candidato import votos_por_candidato
 from Resultado.boletim import boletim_da_urna
 from Resultado.validar_integridade import relatorio_integridade
 from Resultado.comparecimento import estatistica_comparecimento
+from Resultado.resultado_final import resultado_final
 import os, random, string, time
 
 
@@ -292,8 +293,7 @@ def resultado():
     elif(i==1):
         boletim_da_urna()
     elif(i==2):
-        pass
-
+        resultado_final()
     elif(i==3):
         votos_por_partido()
     elif(i==4):
