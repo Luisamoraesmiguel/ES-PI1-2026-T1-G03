@@ -10,6 +10,7 @@ from Resultado.vts_partido import votos_por_partido
 from Resultado.vts_candidato import votos_por_candidato
 from Resultado.boletim import boletim_da_urna
 from Resultado.validar_integridade import relatorio_integridade
+from Resultado.comparecimento import estatistica_comparecimento
 import os, random, string, time
 
 
@@ -298,6 +299,8 @@ def resultado():
     elif(i==4):
         votos_por_candidato()
         resultado()
+    elif(i==5):
+        estatistica_comparecimento()
     elif(i==6):
         relatorio_integridade()
 
