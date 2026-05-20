@@ -322,7 +322,7 @@ def menu_encerrar_sistema():
 
 <<<<<<< Updated upstream
 if __name__ == "__main__":
-=======
-if __name__ == "__main__": # Ponto de entrada do programa
->>>>>>> Stashed changes
-    principal()
+    while True:
+        opcao = principal()
+        if opcao == 0:
+            menu_encerrar_sistema()
