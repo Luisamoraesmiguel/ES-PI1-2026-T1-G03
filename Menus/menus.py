@@ -364,7 +364,4 @@ def menu_encerrar_sistema():
 
 
 if __name__ == "__main__":
-    while True:
         opcao = principal()
-        if opcao == 0:
-            menu_encerrar_sistema()
