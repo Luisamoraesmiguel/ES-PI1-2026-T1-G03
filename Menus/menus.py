@@ -324,20 +324,25 @@ def resultado():
     i=int(input("\nEscolha a Opção Desejada: "))
 
     if(i==0):
-        sistema_votacao()
+        principal()
     elif(i==1):
         boletim_da_urna()
+        resultado()
     elif(i==2):
         resultado_final()
+        resultado()
     elif(i==3):
         votos_por_partido()
+        resultado()
     elif(i==4):
         votos_por_candidato()
         resultado()
     elif(i==5):
         estatistica_comparecimento()
+        resultado()
     elif(i==6):
         relatorio_integridade()
+        resultado()
     else:
         print("A opção escolhida é Inválida")
         resultado()
