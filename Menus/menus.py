@@ -12,6 +12,7 @@ from Resultado.boletim import boletim_da_urna
 from Resultado.validar_integridade import relatorio_integridade
 from Resultado.comparecimento import estatistica_comparecimento
 from Resultado.resultado_final import resultado_final
+from Auditoria.protocolos import exibir_protocolos
 import os, random, string, time
 
 
@@ -259,7 +260,6 @@ def auditoria():
     print("\n== AUDITORIA ==")
     print("\n1- Log de Ocorrência")
     print("2- Protocolo")
-    print("3- Exibir Log")
     print("0- Voltar")
 
     i=int(input("\nEscolha a Opção Desejada: "))
@@ -273,7 +273,7 @@ def auditoria():
         input("\nPressione Enter para voltar...")
         auditoria()
     elif(i==2):
-        pass
+        exibir_protocolos()
 
 def resultado():
     os.system('cls')
