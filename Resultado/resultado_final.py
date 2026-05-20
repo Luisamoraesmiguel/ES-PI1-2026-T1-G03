@@ -38,5 +38,7 @@ def resultado_final():
         for nome, numero, partido, total in resultados:
             print(f"{nome} | Número: {numero} | Partido: {partido} | Votos: {total}")
 
+        print("\n pressione Enter para voltar...")
+        input()
     cursor.close()
     conexao.close()
