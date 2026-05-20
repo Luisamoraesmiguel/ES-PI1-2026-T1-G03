@@ -11,6 +11,9 @@ from Resultado.vts_candidato import votos_por_candidato
 from Resultado.boletim import boletim_da_urna
 from Resultado.validar_integridade import relatorio_integridade
 from Códigos_fonte.gerador_protocolo import criar_novo_protocolo as gerador_protocolo
+from Resultado.comparecimento import estatistica_comparecimento
+from Resultado.resultado_final import resultado_final
+from Auditoria.protocolos import exibir_protocolos
 import os, random, string, time
 
 
@@ -272,9 +275,12 @@ def auditoria():
         input("\nPressione Enter para voltar...")
         auditoria()
     elif(i==2):
+
         gerador_protocolo()
         input("\nPressione Enter para voltar...")
-        
+
+        exibir_protocolos()
+        input("\nPressione Enter para voltar...")
 
 def resultado():
     os.system('cls')
