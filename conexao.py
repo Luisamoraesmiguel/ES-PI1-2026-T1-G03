@@ -7,5 +7,3 @@ def conectar():
         password='Beatriz190524', 
         database='tabela_bd'
     )
-
-#from conexao import conectar
