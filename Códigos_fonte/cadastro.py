@@ -44,6 +44,7 @@ def cadastrar_eleitor():
     cursor.close()
     conexao.close()
     print("Eleitor cadastrado e criptografado com sucesso!")
+    input("\nPressione Enter para continuar...")
 
 
 def cadastrar_candidato():
@@ -71,6 +72,7 @@ def cadastrar_candidato():
     cursor.execute(sql, valores)
     conexao.commit()
     print("\nCandidato cadastrado com sucesso!")
+    input("\nPressione Enter para continuar...")
     cursor.close()
     conexao.close()
 
