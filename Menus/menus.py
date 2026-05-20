@@ -293,7 +293,7 @@ def auditoria():
     i=int(input("\nEscolha a Opção Desejada: "))
 
     if(i==0):
-        sistema_votacao()
+        principal()
     elif(i==1):
         print("\n== LOG DE OCORRÊNCIA ==")
         from Votacao.log import exibir_logs
@@ -301,11 +301,8 @@ def auditoria():
         input("\nPressione Enter para voltar...")
         auditoria()
     elif(i==2):
-        gerador_protocolo()
-        input("\nPressione Enter para voltar...")
-
         exibir_protocolos()
-        input("\nPressione Enter para voltar...")
+        auditoria()
     else:
         print("A opção escolhida é Inválida")
         auditoria()
@@ -365,3 +362,4 @@ def menu_encerrar_sistema():
 
 if __name__ == "__main__":
         opcao = principal()
+
