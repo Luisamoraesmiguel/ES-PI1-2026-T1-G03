@@ -10,6 +10,7 @@ from Resultado.vts_partido import votos_por_partido
 from Resultado.vts_candidato import votos_por_candidato
 from Resultado.boletim import boletim_da_urna
 from Resultado.validar_integridade import relatorio_integridade
+from Códigos_fonte.validacoes import gerador_protocolo
 import os, random, string, time
 
 
@@ -257,7 +258,7 @@ def auditoria():
     print("\n== AUDITORIA ==")
     print("\n1- Log de Ocorrência")
     print("2- Protocolo")
-    print("3- Exibir Log")
+    #print("3- Exibir Log")
     print("0- Voltar")
 
     i=int(input("\nEscolha a Opção Desejada: "))
@@ -271,7 +272,9 @@ def auditoria():
         input("\nPressione Enter para voltar...")
         auditoria()
     elif(i==2):
-        pass
+        gerador_protocolo()
+        input("\nPressione Enter para voltar...")
+        
 
 def resultado():
     os.system('cls')
@@ -317,5 +320,9 @@ def menu_encerrar_sistema():
     
 
 
+<<<<<<< Updated upstream
 if __name__ == "__main__":
+=======
+if __name__ == "__main__": # Ponto de entrada do programa
+>>>>>>> Stashed changes
     principal()
