@@ -251,6 +251,8 @@ def encerramento_votacao():
         if not validar_cpf(cpf):
             print("CPF inválido. Por favor, tente novamente.")
 
+    #validar se e mesario
+
     titulo_valido = False
     while not titulo_valido:
         titulo = input("Digite o número do título de eleitor: ")
