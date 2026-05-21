@@ -14,12 +14,15 @@ def zerezima():
     cursor.execute(limpar)
     conexao.commit()
 
+    resetar_votacao = "UPDATE eleitores SET votou = N"
+    cursor.execute(resetar_votacao)
+
     relatorio = "SELECT Nome, Num_votacao FROM candidatos"
     cursor.execute(relatorio)
     lista_candidatos = cursor.fetchall() 
     print("Candidatos:")
     for candidato in lista_candidatos:
-        print(f"Candidato: {candidato[0]} | Número: {candidato[1]} | Votos: 0")
+        print(f"\nCandidato: {candidato[0]} | Número: {candidato[1]} | Votos: 0")
     print("\nZerezima realizada com sucesso!")
     
     cursor.close() 

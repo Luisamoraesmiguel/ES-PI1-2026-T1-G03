@@ -14,7 +14,7 @@ def listar_eleitores():
     else:
         print("\n== LISTA DE ELEITORES ==")
         for e in eleitores:
-            print(f"Nome: {e[0]} | Título: {e[1]} | Mesário: {e[2]}")
+            print(f"\nNome: {e[0]} | Título: {e[1]} | Mesário: {e[2]}")
     
     input("\nPressione Enter para voltar...")
    

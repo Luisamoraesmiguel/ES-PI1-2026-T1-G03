@@ -11,7 +11,7 @@ def editar_eleitor():
     eleitor = cursor.fetchone()
 
     if eleitor is None:
-        print(" Eleitor não encontrado.")
+        print("\nEleitor não encontrado.")
         cursor.close()
         conexao.close()
         return
@@ -64,7 +64,7 @@ def editar_eleitor():
         conexao.close()
         return
 
-    conexao.commit() # Salva as alterações no banco de dados
+    conexao.commit() 
     print("\nDados atualizados com sucesso!")
     cursor.close()
     conexao.close()

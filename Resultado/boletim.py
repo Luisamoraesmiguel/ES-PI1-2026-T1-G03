@@ -20,3 +20,6 @@ def boletim_da_urna():
 
     print("\n== VENCEDOR ==")
     print(f"Nome: {vencedor[0]} | Número: {vencedor[1]} | Partido: {vencedor[2]} | Votos: {vencedor[3]}")
+    cursor.close() 
+    conexao.close() 
+    input("\nPressione Enter para continuar...")

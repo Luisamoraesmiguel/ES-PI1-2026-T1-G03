@@ -7,11 +7,11 @@ def votos_por_partido():
     sql = "SELECT c.Partido, COUNT(v.Id) as total FROM candidatos c LEFT JOIN votos v ON c.Id = v.Candidato GROUP BY c.Partido ORDER BY total DESC"
     cursor.execute(sql)
 
-    resultados = cursor.fetchall() # Cada linha é uma tupla (partido, total_votos)
+    resultados = cursor.fetchall() 
 
     print("\n== VOTOS POR PARTIDO ==")
     for partido, total in resultados:
-        print(f"Partido: {partido} | Votos: {total}")
+        print(f"\nPartido: {partido} | Votos: {total}")
 
     cursor.close()
     conexao .close()

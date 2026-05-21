@@ -16,12 +16,12 @@ def criar_novo_protocolo(numero_candidato):
      
      prefixo = "V"
 
-     # 2 letras aleatórias
+     
      letras = ''.join(random.choices(string.ascii_uppercase, k=2))
 
      ano = 26
 
-     cand = str(numero_candidato).zfill(2)  # Garante que o número do candidato tenha 2 dígitos
+     cand = str(numero_candidato).zfill(2)  
 
      digitos = ''.join(random.choices(string.digits, k=5))
 

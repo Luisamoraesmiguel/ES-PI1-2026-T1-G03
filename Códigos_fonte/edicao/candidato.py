@@ -46,7 +46,7 @@ def editar_candidato():
         return
 
     else:
-        print("Opção inválida, Tente novamente.")
+        print("\nOpção inválida, Tente novamente.")
         cursor.close()
         conexao.close()
         return

@@ -31,14 +31,14 @@ def buscar_eleitor(dado):
         print("\n" + "="*30)
         print("   ELEITOR ENCONTRADO")
         print("="*30)
-        print(f"NOME:    {resultado['nome']}")
+        print(f"\nNOME:    {resultado['nome']}")
         print(f"TÍTULO:  {resultado['titulo']}")
         print(f"CPF:     {Criptografia.decifrar(resultado['cpf'])}")
         print(f"MESÁRIO: {'SIM' if resultado['mesario'] else 'NÃO'}")
         print("="*30 + "\n")
     else:
         print("\n" + "="*30)
-        print("   ELEITOR NÃO ENCONTRADO")
+        print("\n   ELEITOR NÃO ENCONTRADO")
         print("="*30 + "\n")
 
     cursor.close()

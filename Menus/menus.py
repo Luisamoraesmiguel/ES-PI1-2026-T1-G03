@@ -195,7 +195,7 @@ def sistema_votacao():
 
 
 def menu_votacao():
-    os.system('cls')  # Limpa a tela para melhor visualização
+    os.system('cls')  
     print("\n== MENU DE OPERAÇÃO DA URNA ==")
     print("\n1- Votar")
     print("2- Encerrar Votação")
@@ -327,3 +327,4 @@ def menu_encerrar_sistema():
 
 if __name__ == "__main__": # Início do programa
     principal()
+

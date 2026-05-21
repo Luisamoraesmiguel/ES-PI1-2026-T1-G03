@@ -6,3 +6,4 @@
 [REGISTRO]: 1, 99, datetime.datetime2026, 4, 22, 17, 34, 52
 [REGISTRO]: 2, 99, datetime.datetime2026, 4, 22, 17, 36, 11
 >>>>>>> 2da6437a0b60280bbfe3a49a0aa75ca038c6173c
+[2026-05-19 23:18:22] SUCESSO: Voto realizado com sucesso.
