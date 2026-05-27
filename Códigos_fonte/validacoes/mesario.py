@@ -30,8 +30,8 @@ def verificar_mesario(titulo, cpf_4digitos, chave):
 
     cpf_str = ''
     for c in str(cpf_decifrado):
-        if c.isdigit():
-            cpf_str += c
+        numero = str(ord(c) - ord('A'))
+        cpf_str += numero
     cpf_4digitos = str(cpf_4digitos).strip() 
 
 
@@ -41,8 +41,8 @@ def verificar_mesario(titulo, cpf_4digitos, chave):
         conexao.close()
         return {"nome": titulo} 
     else:
-        print("\n[ERRO] CPF incorreto. Tente novamente.")
+        print(f"\n[ERRO] CPF incorreto. Tente novamente.{cpf_decifrado}")
         cursor.close()
         conexao.close()
-        return "CPF_ERRADO"
+        return "INVALIDO"
     
