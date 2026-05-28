@@ -1,5 +1,7 @@
 from conexao import conectar
 from Criptografia import cifrar
+from Códigos_fonte.validacoes.cpf import validar_cpf
+from Códigos_fonte.validacoes.titulo import verificar_titulo
 
 def editar_eleitor():
     print("\n== EDIÇÃO DE ELEITOR ==")
@@ -16,7 +18,7 @@ def editar_eleitor():
         conexao.close()
         return
 
-    print(f"\nEleitor encontrado: {eleitor[2]}")
+    print(f"\nEleitor encontrado: {eleitor[1]}")
     print("O que deseja editar?")
     print("1- Nome")
     print("2- Título")
@@ -28,29 +30,51 @@ def editar_eleitor():
     opcao = input("Escolha: ")
 
     if opcao == "1":
-        novo = input("Novo nome: ")
+        novo = input("Novo nome: ").upper().strip()
         cursor.execute("UPDATE eleitores SET nome = %s WHERE titulo = %s", (novo, titulo))
+        conexao.commit() # salvar alteracoes no banco de dados
         print(f"Nome atualizado para {novo} com sucesso!")
 
     elif opcao == "2":
-        novo = input("Novo título: ")
-        cursor.execute("UPDATE eleitores SET titulo = %s WHERE titulo = %s", (novo, titulo))
-        print(f"Título atualizado para {novo} com sucesso!")    
+        novo = False
+        while not novo:
+            novo = input("Digite o número do título de eleitor: ")
+        if verificar_titulo(novo):
+            titulo_valido = True
+            print("Título de eleitor válido.")
+            print(f"Título atualizado para {novo} com sucesso!")    
+            cursor.execute("UPDATE eleitores SET titulo = %s WHERE titulo = %s", (novo, titulo))
+            conexao.commit()
+
+        else:
+            print("Título de eleitor inválido. Por favor, tente novamente.")
+            cursor.close()
+            conexao.close()
+        
 
     elif opcao == "3":
         novo = input("Novo CPF: ")
+        if not validar_cpf(novo):
+            print("CPF inválido. Por favor, tente novamente.")
+            cursor.close()
+            conexao.close()
+            return
         novo_cifrado = cifrar(novo)
         cursor.execute("UPDATE eleitores SET cpf = %s WHERE titulo = %s", (novo_cifrado, titulo))
-        print("CPF atualizado para {novo} com sucesso!")
+        conexao.commit()
+        print("CPF atualizado com sucesso!")
 
     elif opcao == "4":
         novo = input("É mesário? (S/N): ").upper()
         cursor.execute("UPDATE eleitores SET mesario = %s WHERE titulo = %s", (novo, titulo))
+        conexao.commit()
         print(f"Status de mesário atualizado para {novo} com sucesso!")
 
     elif opcao == "5":
         novo = input("Nova chave de acesso: ").upper()
+        novo_cifrado = cifrar(novo)
         cursor.execute("UPDATE eleitores SET chave_de_acesso = %s WHERE titulo = %s", (novo, titulo))
+        conexao.commit()
         print(f"Chave de acesso ({novo}) atualizada com sucesso!")
 
     elif opcao == "0":
