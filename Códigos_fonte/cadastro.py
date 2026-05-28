@@ -38,6 +38,18 @@ def cadastrar_eleitor():
     
     conexao = conectar()
     cursor = conexao.cursor()
+    cursor.execute("SELECT cpf FROM eleitores WHERE cpf = %s", (cpf_cifrado,))
+    if cursor.fetchone() is not None:
+        print("\nCPF já cadastrado. Tente novamente.")
+        cursor.close()
+        conexao.close()
+        return
+    cursor.execute("SELECT titulo FROM eleitores WHERE titulo = %s", (titulo,))
+    if cursor.fetchone() is not None:
+        print("\nTítulo de eleitor já cadastrado. Tente novamente.")
+        cursor.close()
+        conexao.close()
+        return
     sql = 'INSERT INTO eleitores (nome, cpf, titulo, mesario, votou, chave_de_acesso) VALUES (%s, %s, %s, %s, %s, %s)'
     valores = (nome, cpf_cifrado, titulo, mesario, 'N', senha_cifrada)
     cursor.execute(sql, valores)

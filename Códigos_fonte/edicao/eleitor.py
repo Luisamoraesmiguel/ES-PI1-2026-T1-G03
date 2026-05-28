@@ -39,21 +39,22 @@ def editar_eleitor():
         novo = False
         while not novo:
             novo = input("Digite o número do título de eleitor: ")
-        if verificar_titulo(novo):
-            titulo_valido = True
-            print("Título de eleitor válido.")
-            print(f"Título atualizado para {novo} com sucesso!")   
-            conexao = conectar()
-            cursor = conexao.cursor()
-            cursor.execute("UPDATE eleitores SET titulo = %s WHERE titulo = %s", (novo, titulo))
-            conexao.commit()
-            cursor.close()
-            conexao.close()
+            if verificar_titulo(novo):
+                cursor.execute("SELECT titulo FROM eleitores WHERE titulo = %s", (novo,))
+                if cursor.fetchone() is not None:
+                    print("\nTítulo de eleitor já cadastrado. Tente novamente.")
+                    novo = False
+                else:
+                    print("Título de eleitor válido.")
+                    print(f"Título atualizado para {novo} com sucesso!")
+                    cursor.execute("UPDATE eleitores SET titulo = %s WHERE titulo = %s", (novo, titulo))
+                    conexao.commit()
+                    cursor.close()
+                    conexao.close()
+            else:
+                print("Título de eleitor inválido. Por favor, tente novamente.")
+                novo = False
 
-        else:
-            print("Título de eleitor inválido. Por favor, tente novamente.")
-            cursor.close()
-            conexao.close()
         
 
     elif opcao == "3":
@@ -64,6 +65,12 @@ def editar_eleitor():
             conexao.close()
             return
         novo_cifrado = cifrar(novo)
+        cursor.execute("SELECT cpf FROM eleitores WHERE cpf = %s", (novo_cifrado,))
+        if cursor.fetchone() is not None:
+            print("\nCPF já cadastrado. Tente novamente.")
+            cursor.close()
+            conexao.close()
+            return
         cursor.execute("UPDATE eleitores SET cpf = %s WHERE titulo = %s", (novo_cifrado, titulo))
         conexao.commit()
         print("CPF atualizado com sucesso!")
