@@ -42,9 +42,13 @@ def editar_eleitor():
         if verificar_titulo(novo):
             titulo_valido = True
             print("Título de eleitor válido.")
-            print(f"Título atualizado para {novo} com sucesso!")    
+            print(f"Título atualizado para {novo} com sucesso!")   
+            conexao = conectar()
+            cursor = conexao.cursor()
             cursor.execute("UPDATE eleitores SET titulo = %s WHERE titulo = %s", (novo, titulo))
             conexao.commit()
+            cursor.close()
+            conexao.close()
 
         else:
             print("Título de eleitor inválido. Por favor, tente novamente.")
@@ -88,8 +92,8 @@ def editar_eleitor():
         conexao.close()
         return
 
-    conexao.commit() 
-    print("\nDados atualizados com sucesso!")
-    cursor.close()
-    conexao.close()
+    #conexao.commit() 
+    #print("\nDados atualizados com sucesso!")
+    #cursor.close()
+    #conexao.close()
 

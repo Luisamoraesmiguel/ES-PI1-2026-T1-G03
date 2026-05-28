@@ -3,6 +3,7 @@ from Códigos_fonte.edicao.eleitor import editar_eleitor
 from Códigos_fonte.edicao.candidato import editar_candidato
 from Códigos_fonte.edicao.rever_chave import rever_chave_acesso
 from Códigos_fonte.edicao.busca_eleitor import buscar_eleitor as buscar, buscar_candidato
+from Códigos_fonte.edicao.lista import listar_eleitores, listar_candidatos
 from Códigos_fonte.cadastro import cadastrar_candidato, cadastrar_eleitor
 from Códigos_fonte.validacoes.cpf import validar_cpf
 from Votacao.Abertura import abertura_votacao
@@ -118,24 +119,6 @@ def edicao():
         rever_chave_acesso()
 
     
-def listar_eleitores():
-    from conexao import conectar
-    conexao = conectar()
-    cursor = conexao.cursor()
-    cursor.execute("SELECT nome, titulo, mesario FROM eleitores")
-    eleitores = cursor.fetchall()
-    cursor.close()
-    conexao.close()
-
-    if not eleitores:
-        print("Nenhum eleitor cadastrado.")
-    else:
-        print("\n== LISTA DE ELEITORES ==")
-        for e in eleitores:
-            print(f"Nome: {e[0]} | Título: {e[1]} | Mesário: {e[2]}")
-    
-    input("\nPressione Enter para voltar...")
-    busca()
 
 
 def busca():
@@ -162,12 +145,21 @@ def busca():
 def listar():
     os.system('cls')
     print("\n== LISTAR ==")
+    print("\n1- Listar Eleitores")
+    print("2- Listar Candidatos")
     print("\n0- Voltar")
 
     i=int(input("\nEscolha a Opção Desejada: "))
 
     if(i==0):
         gerenciamento()
+    elif(i==1):
+        listar_eleitores()
+    elif(i==2):
+        listar_candidatos()
+    else:
+        print("A opção escolhida é Inválida\n")
+        listar()
 
 
 def sistema_votacao():
