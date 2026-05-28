@@ -23,13 +23,21 @@ def realizar_fluxo_votacao():
     if eleitor == "INVALIDO":
         print("\n[ERRO] Credenciais incorretas.")
         registrar_log("ALERTA: Tentativa de acesso negado - credenciais invalidas")
+        from Menus.menus import menu_votacao
+        menu_votacao()
     
     elif eleitor == "JA_VOTOU":
         print("\n[ERRO] Este eleitor já realizou o voto anteriormente.")
         registrar_log("ALERTA: Tentativa de voto duplo")
+        from Menus.menus import menu_votacao
+        menu_votacao()
+
     elif eleitor == "CPF_ERRADO":
         print("\n[ERRO] CPF não confere.")
         registrar_log("ALERTA: Tentativa de voto com CPF incorreto")
+        from Menus.menus import menu_votacao
+        menu_votacao()
+        
     else:
         
         processar_escolha_candidato(t, eleitor[0])
