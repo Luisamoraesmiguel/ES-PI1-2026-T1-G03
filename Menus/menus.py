@@ -12,6 +12,8 @@ from Resultado.vts_partido import votos_por_partido
 from Resultado.boletim import boletim_da_urna
 import os, random, string
 from Códigos_fonte.validacoes.titulo import verificar_titulo
+from Votacao.processo_votacao import realizar_fluxo_votacao
+from Códigos_fonte.validacoes.mesario import verificar_mesario
 
 def principal():
     os.system('cls')
@@ -174,7 +176,9 @@ def sistema_votacao():
 
 
     if(i==1):
-        abertura_votacao()
+        if not abertura_votacao():
+            return sistema_votacao()
+             
     elif(i==2):
         auditoria()
     elif(i==3):
@@ -200,7 +204,7 @@ def menu_votacao():
         sistema_votacao()
 
     elif(i==1):
-        votacao()
+        realizar_fluxo_votacao()
 
     elif(i==2):
         encerramento_votacao()
@@ -208,52 +212,25 @@ def menu_votacao():
     return i
     
 
-def votacao():
-    os.system('cls')
-    print("\n== VOTAÇÃO ==")
-    print("\n1- Votar")
-    print("2- Encerrar Votação")
-    print("0- Voltar")
 
-    i=int(input("\nEscolha a Opção Desejada: "))
-    if(i==0):
-        menu_votacao()
-    elif(i==1):
-        from Votacao.registrar_voto import registrar_voto
-        registrar_voto()
-        menu_votacao()
-    elif(i==2):
-        encerramento_votacao()
-    else:
-        print("A opção escolhida é Inválida\n")
-        menu_votacao()
 
 def encerramento_votacao():
-    letras = ''.join(random.choices(string.ascii_uppercase, k=2))
+    letras = ''.join(random.choices(string.ascii_uppercase, k=2)) 
     digitos = ''.join(random.choices(string.digits, k=5))
     
     print("\nEncerramento de votação")
     nome = input("Digite o nome completo do mesário: ").upper().strip()
     titulo = ""
     cpf = ""
+    chave = ""
+    resultado = verificar_mesario(titulo,cpf,chave)
+    while resultado == "INVALIDO":
+        #print('Titulo ou chave incorretos. Tente novamente.')
+        titulo = input("Digite o número do título de eleitor do mesário: ")
+        cpf = input("Digite os 4 primeiros dígitos do CPF do mesário: ")
+        chave = input("Digite a chave de acesso do mesário: ").upper().strip()
+        resultado = verificar_mesario(titulo,cpf,chave)
 
-
-    while not validar_cpf(cpf):
-        cpf = input("Digite o CPF do eleitor (apenas números): ")
-        if not validar_cpf(cpf):
-            print("CPF inválido. Por favor, tente novamente.")
-
-    #validar se e mesario
-
-    titulo_valido = False
-    while not titulo_valido:
-        titulo = input("Digite o número do título de eleitor: ")
-        if verificar_titulo(titulo):
-            titulo_valido = True
-            print("Título de eleitor válido.")
-        else:
-            print("Título de eleitor inválido. Por favor, tente novamente.")
-    time.sleep(2)
     print("\nVotação encerrada com sucesso!")
     input("Pressione Enter para retornar ao menu do sistema de votação.")
     sistema_votacao()

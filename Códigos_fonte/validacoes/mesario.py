@@ -1,5 +1,5 @@
 from conexao import conectar
-from Criptografia import decifrar
+from Criptografia import cifrar, decifrar
 
 
 def verificar_mesario(titulo, cpf_4digitos, chave):
@@ -8,7 +8,7 @@ def verificar_mesario(titulo, cpf_4digitos, chave):
     cursor = conexao.cursor()
     
     sql = "SELECT cpf, mesario FROM eleitores WHERE titulo = %s AND chave_de_acesso = %s "
-    cursor.execute(sql, (titulo, chave))
+    cursor.execute(sql, (titulo, cifrar(chave)))
     resultado = cursor.fetchone()
 
     if resultado is None:

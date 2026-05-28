@@ -34,6 +34,7 @@ def realizar_fluxo_votacao():
         
         processar_escolha_candidato(t, eleitor[0])
         registrar_log("SUCESSO: Voto realizado com sucesso.")
+        return
 
 
 def processar_escolha_candidato(titulo_eleitor, nome_eleitor):
@@ -64,7 +65,11 @@ def processar_escolha_candidato(titulo_eleitor, nome_eleitor):
             input("\nPressione Enter para concluir...")
             
             voto_finalizado = True 
+            from Menus.menus import menu_votacao
+            menu_votacao()
+            return
         else:
             print("\nVoltando para a inserção do número...")
+
            
 

@@ -6,7 +6,7 @@ def verificar_eleitor(titulo, cpf_4digitos, chave):
     cursor = conexao.cursor()
   
     sql = "SELECT nome, cpf, votou FROM eleitores WHERE titulo = %s AND chave_de_acesso = %s "
-    cursor.execute(sql, (titulo, chave))
+    cursor.execute(sql, (titulo, cifrar(chave)))
     resultado = cursor.fetchone()
 
     
@@ -25,11 +25,13 @@ def verificar_eleitor(titulo, cpf_4digitos, chave):
         return "JA_VOTOU"
     
     cpf_decifrado = decifrar(cpf)
+    cpf_decifrado = decifrar(cpf)
+    
    
     cpf_str = ''
-    for c in str(cpf_decifrado):
-        if c.isdigit():
-            cpf_str += c
+    for c in str(cpf_decifrado): 
+        if c.isalpha():
+            cpf_str += str(ord(c) - ord('A'))
     cpf_4digitos = str(cpf_4digitos).strip()
 
     if cpf_str[:4] == cpf_4digitos:
