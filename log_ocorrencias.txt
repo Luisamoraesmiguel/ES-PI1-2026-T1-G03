@@ -19,3 +19,5 @@
 [2026-05-28 09:41:29] ALERTA: Tentativa de voto com CPF incorreto
 [2026-05-28 09:41:29] SUCESSO: Voto realizado com sucesso.
 [2026-05-28 09:41:29] SUCESSO: Voto realizado com sucesso.
+[2026-05-29 01:17:08] SUCESSO: Voto realizado com sucesso.
+[2026-05-29 01:17:08] SUCESSO: Voto realizado com sucesso.

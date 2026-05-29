@@ -240,27 +240,41 @@ def menu_votacao():
     return i
     
 
-
-
 def encerramento_votacao():
-    letras = ''.join(random.choices(string.ascii_uppercase, k=2)) 
-    digitos = ''.join(random.choices(string.digits, k=5))
+    print("\n" + "="*30)
+    print(" ENCERRAMENTO DE VOTAÇÃO")
+    print("="*30)
     
-    print("\nEncerramento de votação")
-    nome = input("Digite o nome completo do mesário: ").upper().strip()
-    titulo = ""
-    cpf = ""
-    chave = ""
-    resultado = verificar_mesario(titulo,cpf,chave)
-    while resultado == "INVALIDO":
-        #print('Titulo ou chave incorretos. Tente novamente.')
-        titulo = input("Digite o número do título de eleitor do mesário: ")
-        cpf = input("Digite os 4 primeiros dígitos do CPF do mesário: ")
-        chave = input("Digite a chave de acesso do mesário: ").upper().strip()
-        resultado = verificar_mesario(titulo,cpf,chave)
+    status = "pendente"
+    
+    while status == "pendente":
+        nome = input("\nDigite o nome completo do mesário: ").upper().strip()
+        titulo = input("Digite o número do título de eleitor do mesário: ").strip()
+        cpf_4 = input("Digite os 4 primeiros dígitos do CPF do mesário: ").strip()
+        chave = input("Digite a chave de acesso do mesário: ").strip()
 
-    print("\nVotação encerrada com sucesso!")
-    input("Pressione Enter para retornar ao menu do sistema de votação.")
+        resultado = verificar_mesario(titulo, cpf_4, chave)
+
+        if isinstance(resultado, dict):
+            print(f"\n[OK] Mesário {resultado['nome']} identificado.")
+            escolha = input("\nDeseja realmente encerrar a votação? (S/N): ").upper().strip()
+            
+            if escolha == 'S':
+                segunda_chave = input("Confirme sua chave de acesso para lacrar a urna: ").strip()
+                if segunda_chave == chave:
+                    print("\n" + "*"*40)
+                    print(">>> VOTAÇÃO ENCERRADA COM SUCESSO! <<<")
+                    print("*"*40)
+                    status = "concluido"
+                else:
+                    print("\n[ERRO] A confirmação da chave falhou. Tente novamente.")
+            else:
+                print("\nEncerramento cancelado.")
+                status = "concluido"
+        else:
+            print("\n[ERRO] Dados incorretos. Tente novamente.")
+
+    input("\nPressione Enter para retornar ao menu.")
     sistema_votacao()
 
 
