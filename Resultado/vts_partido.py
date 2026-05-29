@@ -1,6 +1,16 @@
 from conexao import conectar
 
 def votos_por_partido():
+    """
+    Consulta e exibe a contagem de votos agrupada por partido,
+    ordenando do partido mais votado para o menos votado.
+
+    Args:
+        Nenhum.
+
+    Returns:
+        None: Imprime o total de votos por partido no terminal.
+    """
     conexao = conectar()
     cursor = conexao.cursor()
 
