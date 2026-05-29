@@ -8,7 +8,7 @@ def consultar_auditoria():
     cursor = conexao.cursor() 
 
     cursor.execute("SELECT * FROM votos")
-    resultados = cursor.fetchall()
+    resultados = cursor.fetchall() 
 
     arquivo = open("log_ocorrencias.txt", "w", encoding="utf-8")
 

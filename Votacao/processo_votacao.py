@@ -16,7 +16,7 @@ def realizar_fluxo_votacao():
 
     t = input("Título de Eleitor: ")
     c4 = input("4 primeiros dígitos do CPF: ")
-    ch = input("Chave de Acesso: ").upper().strip()
+    ch = input("Chave de Acesso: ").upper().strip() 
 
     eleitor = eleitor_validacao.verificar_eleitor(t, c4, ch)
 
@@ -37,7 +37,7 @@ def realizar_fluxo_votacao():
         registrar_log("ALERTA: Tentativa de voto com CPF incorreto")
         from Menus.menus import menu_votacao
         menu_votacao()
-        
+
     else:
         
         processar_escolha_candidato(t, eleitor[0])
@@ -56,7 +56,7 @@ def processar_escolha_candidato(titulo_eleitor, nome_eleitor):
         candidato = busca(numero)
 
         if candidato:
-            print(f"CANDIDATO: {candidato['nome']} | PARTIDO: {candidato['partido']}")
+            print(f"CANDIDATO: {candidato['nome']} | Numero: {candidato['numero']} | PARTIDO: {candidato['partido']}")
         else:
             print("CANDIDATO NÃO ENCONTRADO - VOTO SERÁ NULO.")
             numero = "00"
