@@ -2,9 +2,19 @@ from conexao import conectar
 from Criptografia import decifrar
 
 def validar_identidade_eleitor(titulo, cpf_4digitos, chave):
+    
     """
-    Baseado na sua lógica de mesário, valida o eleitor para a urna.
+    Valida a identidade do eleitor com base no título, nos 4 primeiros dígitos do CPF e na chave de acesso.
+
+    Args:
+        titulo (str): Número do título de eleitor.
+        cpf_4digitos (str): Os 4 primeiros dígitos do CPF.
+        chave (str): Chave de acesso única do eleitor.
+
+    Returns:
+        dict/str: Retorna o dicionário com os dados do eleitor se válido, ou uma string de erro ("INVALIDO", "JA_VOTOU", "CPF_ERRADO") caso contrário.
     """
+
     conexao = conectar()
     cursor = conexao.cursor(dictionary=True) 
     

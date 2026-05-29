@@ -4,6 +4,17 @@ from Códigos_fonte.zerezima import zerezima
 from Votacao.log import registrar_log
 
 def abertura_votacao():
+
+    """
+    Inicia o processo de abertura da votação, identificando o mesário e executando a zerezima.
+
+    Args:
+        Nenhum.
+
+    Returns:
+        bool: Retorna True se a abertura e a zerezima forem bem-sucedidas, False caso contrário.
+    """
+
     os.system('cls')
     print("\n== ABERTURA DO SISTEMA DE VOTAÇÃO ==")
 
