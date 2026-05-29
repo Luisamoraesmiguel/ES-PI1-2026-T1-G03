@@ -17,18 +17,22 @@ def abertura_votacao():
         N = input("Deseja tentar novamente? (S/N): ")
         if N == 'N' or N == 'n':
             print("Retornando ao menu do sistema de votação...")
-            return
+            return False
         titulo = input("\nDigite o número do título de eleitor do mesário: ")
         cpf = input("Digite os 4 primeiros dígitos do CPF do mesário: ")
         chave = input("Digite a chave de acesso do mesário: ").upper().strip()
 
     print("\nMesário identificado com sucesso!")
+   
     input("Pressione Enter para realizar a Zerezima")
 
     while not zerezima():
         print("\nErro ao realizar a Zerezima. Por favor, tente novamente.")
         input("Pressione Enter para realizar a Zerezima")
     print("\nZerezima realizada com sucesso!")
+    from Menus.menus import menu_votacao
+    menu_votacao()
+    return True
     
 
     from Votacao.processo_votacao import realizar_fluxo_votacao
@@ -40,4 +44,5 @@ def abertura_votacao():
          if resposta == 'N':
             continuar = False
             print("Encerrando o sistema de votação. Obrigado!")
+    return True
    

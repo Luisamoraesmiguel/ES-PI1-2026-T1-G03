@@ -47,6 +47,16 @@ def verificar_titulo(titulo):
     else:
         segundo_dv = resto2
 
+    from conexao import conectar
+    conexao = conectar()
+    cursor = conexao.cursor()
+    cursor.execute('SELECT * FROM eleitores WHERE titulo = %s', (titulo,))
+    existe = cursor.fetchone()
+    cursor.close()
+    conexao.close()
+    if existe:
+        print("Título de eleitor já cadastrado. Por favor, tente novamente.")
+        return False
     return segundo_dv == dv2
 
 

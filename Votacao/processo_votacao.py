@@ -16,24 +16,33 @@ def realizar_fluxo_votacao():
 
     t = input("Título de Eleitor: ")
     c4 = input("4 primeiros dígitos do CPF: ")
-    ch = input("Chave de Acesso: ").upper().strip()
+    ch = input("Chave de Acesso: ").upper().strip() 
 
     eleitor = eleitor_validacao.verificar_eleitor(t, c4, ch)
 
     if eleitor == "INVALIDO":
         print("\n[ERRO] Credenciais incorretas.")
         registrar_log("ALERTA: Tentativa de acesso negado - credenciais invalidas")
+        from Menus.menus import menu_votacao
+        menu_votacao()
     
     elif eleitor == "JA_VOTOU":
         print("\n[ERRO] Este eleitor já realizou o voto anteriormente.")
         registrar_log("ALERTA: Tentativa de voto duplo")
+        from Menus.menus import menu_votacao
+        menu_votacao()
+
     elif eleitor == "CPF_ERRADO":
         print("\n[ERRO] CPF não confere.")
         registrar_log("ALERTA: Tentativa de voto com CPF incorreto")
+        from Menus.menus import menu_votacao
+        menu_votacao()
+
     else:
         
         processar_escolha_candidato(t, eleitor[0])
         registrar_log("SUCESSO: Voto realizado com sucesso.")
+        return
 
 
 def processar_escolha_candidato(titulo_eleitor, nome_eleitor):
@@ -47,7 +56,7 @@ def processar_escolha_candidato(titulo_eleitor, nome_eleitor):
         candidato = busca(numero)
 
         if candidato:
-            print(f"CANDIDATO: {candidato['nome']} | PARTIDO: {candidato['partido']}")
+            print(f"CANDIDATO: {candidato['nome']} | Numero: {candidato['numero']} | PARTIDO: {candidato['partido']}")
         else:
             print("CANDIDATO NÃO ENCONTRADO - VOTO SERÁ NULO.")
             numero = "00"
@@ -64,7 +73,11 @@ def processar_escolha_candidato(titulo_eleitor, nome_eleitor):
             input("\nPressione Enter para concluir...")
             
             voto_finalizado = True 
+            from Menus.menus import menu_votacao
+            menu_votacao()
+            return
         else:
             print("\nVoltando para a inserção do número...")
+
            
 

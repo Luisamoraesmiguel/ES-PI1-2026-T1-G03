@@ -26,6 +26,7 @@ def cadastrar_eleitor():
             print("Título de eleitor inválido. Por favor, tente novamente.")
 
     senha = chave.gerar_chave(nome)
+    senha_cifrada = Criptografia.cifrar(senha)
 
     print('Nome:', nome)
     print('Título:', titulo)
@@ -37,8 +38,20 @@ def cadastrar_eleitor():
     
     conexao = conectar()
     cursor = conexao.cursor()
+    cursor.execute("SELECT cpf FROM eleitores WHERE cpf = %s", (cpf_cifrado,))
+    if cursor.fetchone() is not None:
+        print("\nCPF já cadastrado. Tente novamente.")
+        cursor.close()
+        conexao.close()
+        return
+    cursor.execute("SELECT titulo FROM eleitores WHERE titulo = %s", (titulo,))
+    if cursor.fetchone() is not None:
+        print("\nTítulo de eleitor já cadastrado. Tente novamente.")
+        cursor.close()
+        conexao.close()
+        return
     sql = 'INSERT INTO eleitores (nome, cpf, titulo, mesario, votou, chave_de_acesso) VALUES (%s, %s, %s, %s, %s, %s)'
-    valores = (nome, cpf_cifrado, titulo, mesario, 'N', senha)
+    valores = (nome, cpf_cifrado, titulo, mesario, 'N', senha_cifrada)
     cursor.execute(sql, valores)
     conexao.commit()
     cursor.close()

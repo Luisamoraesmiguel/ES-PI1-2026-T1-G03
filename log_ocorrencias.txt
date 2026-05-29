@@ -7,3 +7,17 @@
 [REGISTRO]: 2, 99, datetime.datetime2026, 4, 22, 17, 36, 11
 >>>>>>> 2da6437a0b60280bbfe3a49a0aa75ca038c6173c
 [2026-05-19 23:18:22] SUCESSO: Voto realizado com sucesso.
+[2026-05-28 01:08:15] ALERTA: Tentativa de acesso negado - credenciais invalidas
+[2026-05-28 01:14:27] ALERTA: Tentativa de acesso negado - credenciais invalidas
+[2026-05-28 01:21:04] ALERTA: Tentativa de voto com CPF incorreto
+[2026-05-28 01:27:38] ALERTA: Tentativa de voto com CPF incorreto
+[2026-05-28 01:36:53] SUCESSO: Voto realizado com sucesso.
+[2026-05-28 01:39:52] ALERTA: Tentativa de voto duplo
+[2026-05-28 01:39:52] SUCESSO: Voto realizado com sucesso.
+[2026-05-28 02:06:24] SUCESSO: Voto realizado com sucesso.
+[2026-05-28 02:06:24] SUCESSO: Voto realizado com sucesso.
+[2026-05-28 09:41:29] ALERTA: Tentativa de voto com CPF incorreto
+[2026-05-28 09:41:29] SUCESSO: Voto realizado com sucesso.
+[2026-05-28 09:41:29] SUCESSO: Voto realizado com sucesso.
+[2026-05-29 01:17:08] SUCESSO: Voto realizado com sucesso.
+[2026-05-29 01:17:08] SUCESSO: Voto realizado com sucesso.

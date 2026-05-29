@@ -27,16 +27,31 @@ def editar_candidato():
 
     if opcao == "1":
         novo = input("Novo nome: ")
+        if novo.strip() == "" or novo.isdigit():
+            print("Nome inválido. Por favor, tente novamente.")
+            cursor.close()
+            conexao.close()
+            return
         cursor.execute("UPDATE candidatos SET Nome = %s WHERE Num_votacao = %s", (novo, numero))
         print(f"Nome atualizado para {novo} com sucesso!")
 
     elif opcao == "2":
         novo = input("Novo número: ")
+        if not novo.isdigit():
+            print("Número inválido. Por favor, tente novamente.")
+            cursor.close()
+            conexao.close()
+            return
         cursor.execute("UPDATE candidatos SET Num_votacao = %s WHERE Num_votacao = %s", (novo, numero))
         print(f"Número atualizado para {novo} com sucesso!")
 
     elif opcao == "3":
         novo = input("Novo partido: ")
+        if novo.strip() == "":
+            print("Partido inválido. Por favor, tente novamente.")
+            cursor.close()
+            conexao.close()
+            return
         cursor.execute("UPDATE candidatos SET Partido = %s WHERE Num_votacao = %s", (novo, numero))
         print(f"Partido atualizado para {novo} com sucesso!")
 

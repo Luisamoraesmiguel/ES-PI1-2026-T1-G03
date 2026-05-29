@@ -10,11 +10,24 @@ def resultado_final():
         LEFT JOIN votos v ON c.Id = v.Candidato 
         GROUP BY c.Id 
         ORDER BY total DESC 
-        LIMIT 1
     """
     cursor.execute(sql_vencedor)
-    vencedor = cursor.fetchone()
+    resultados = cursor.fetchall() # Obtém todos os candidatos ordenados por votos
 
+    max_votos= resultados[0][3]
+    vecedores =[r for r in resultados if r[3] == max_votos]
+
+    if len(vecedores) > 1:
+        print("\n== RESULTADO FINAL ==")
+        print("Houve um empate entre os seguintes candidatos:")
+        for nome, numero, partido, total in vecedores:
+            print(f"{nome} | Número: {numero} | Partido: {partido} | Votos: {total}")
+        print("\nSerá necessário um segundo turno para determinar o vencedor.")
+        cursor.close()
+        conexao.close()
+        return
+
+    vencedor = resultados[0] # O candidato com mais votos é o vencedor
     print("\n== RESULTADO FINAL ==")
     print(f"Vencedor: {vencedor[0]}")
     print(f"Número:   {vencedor[1]}")
