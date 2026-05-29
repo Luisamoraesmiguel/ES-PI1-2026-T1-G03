@@ -68,7 +68,7 @@ def processar_escolha_candidato(titulo_eleitor, nome_eleitor):
             
             print("\n" + "*"*40)
             print("          VOTO CONFIRMADO!")
-            print(f"  PROTOCOLO: {protocolo}")
+            print(f"  PROTOCOLO: {protocolo}".center(40))
             print("*"*40)
             input("\nPressione Enter para concluir...")
             
