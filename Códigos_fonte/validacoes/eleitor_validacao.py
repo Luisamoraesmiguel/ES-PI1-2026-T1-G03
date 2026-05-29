@@ -27,7 +27,6 @@ def verificar_eleitor(titulo, cpf_4digitos, chave):
         conexao.close()
         return "INVALIDO"
     
-    # 3. Desempacota as variáveis (igual você fez com cpf, mesario = resultado)
     nome, cpf, votou = resultado
 
     
