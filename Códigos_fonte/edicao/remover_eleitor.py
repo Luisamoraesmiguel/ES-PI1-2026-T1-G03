@@ -1,7 +1,7 @@
 from conexao import conectar
 
 def apagar_eleitor_do_banco(titulo_digitado):
-     """
+    """
     Remove permanentemente um eleitor do banco de dados
     com base no número do título eleitoral informado.
 

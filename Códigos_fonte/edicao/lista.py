@@ -1,7 +1,7 @@
 from conexao import conectar
 
 def listar_eleitores():
-     """
+    """
     Recupera e exibe todos os eleitores cadastrados no banco,
     mostrando nome, título e status de mesário de cada um.
 
@@ -29,7 +29,7 @@ def listar_eleitores():
     input("\nPressione Enter para voltar...")
    
 def listar_candidatos():
-     """
+    """
     Recupera e exibe todos os candidatos cadastrados no banco,
     mostrando nome, partido e número de votação de cada um.
 

@@ -1,7 +1,7 @@
 from conexao import conectar
 
 def estatistica_comparecimento():
-     """
+    """
     Calcula e exibe a estatística de comparecimento da eleição,
     mostrando o total de eleitores aptos, quantos votaram
     e o percentual de participação.
