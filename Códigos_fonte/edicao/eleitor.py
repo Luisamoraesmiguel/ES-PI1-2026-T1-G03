@@ -4,6 +4,17 @@ from Códigos_fonte.validacoes.cpf import validar_cpf
 from Códigos_fonte.validacoes.titulo import verificar_titulo
 
 def editar_eleitor():
+    """
+    Permite editar os dados de um eleitor cadastrado no banco.
+    O operador pode alterar nome, título, CPF, status de mesário
+    ou chave de acesso. O CPF novo é cifrado antes de ser salvo.
+
+    Args:
+        Nenhum.
+
+    Returns:
+        None: Aplica as alterações no banco e exibe confirmação.
+    """
     print("\n== EDIÇÃO DE ELEITOR ==")
     titulo = input("Digite o título do eleitor que deseja editar: ")
 
