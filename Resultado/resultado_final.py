@@ -1,6 +1,16 @@
 from conexao import conectar
 
 def resultado_final():
+    """
+    Exibe o resultado final da eleição com o candidato vencedor.
+    Oferece a opção de listar a votação completa de todos os candidatos.
+
+    Args:
+        Nenhum.
+
+    Returns:
+        None: Imprime o resultado no terminal.
+    """
     conexao = conectar()
     cursor = conexao.cursor()
 
