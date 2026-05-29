@@ -1,4 +1,16 @@
 def verificar_titulo(titulo):
+    
+    """ 
+    Verifica se um título de eleitor é válido e se já está cadastrado no banco de dados. 
+    
+    Args: 
+        titulo (str | int): Número do título de eleitor informado pelo usuário. 
+    
+    Returns: 
+        bool: Retorna True se o título for válido e não estiver cadastrado. Retorna False caso seja inválido ou já exista no sistema. 
+    
+    """
+
     titulo = str(titulo).strip()  
     titulo = ''.join(filter(str.isdigit, titulo))  
     if len(titulo) != 12 or not titulo.isdigit():
