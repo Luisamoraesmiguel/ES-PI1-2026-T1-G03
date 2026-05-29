@@ -2,6 +2,16 @@ from conexao import conectar
 from Criptografia import cifrar
 
 def editar_candidato():
+    """
+    Permite editar os dados de um candidato cadastrado no banco.
+    O operador pode alterar nome, número de votação ou partido.
+
+    Args:
+        Nenhum.
+
+    Returns:
+        None: Aplica as alterações no banco e exibe confirmação.
+    """
     print("\n== EDIÇÃO DE CANDIDATO ==")
     numero = input("Digite o número do candidato que deseja editar: ")
 
