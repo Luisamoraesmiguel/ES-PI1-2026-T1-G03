@@ -4,6 +4,16 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 from conexao import conectar
 
 def consultar_auditoria():
+    """
+    Consulta todos os votos registrados no banco de dados e gera um
+    arquivo de log com os registros encontrados.
+
+    Args:
+        Nenhum.
+
+    Returns:
+        None: Exibe os registros no terminal e salva em 'log_ocorrencias.txt'.
+    """
     conexao = conectar()
     cursor = conexao.cursor() 
 
