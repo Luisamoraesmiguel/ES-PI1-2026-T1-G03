@@ -1,34 +1,44 @@
 CHAVE = [[3, 3], [2, 5]]
 
 def _digito_para_letra(c):
-    """Converte dígito numérico para letra (0=A, 1=B, ..., 9=J).
-    Args:
-        c (str): Caractere a ser convertido.
-    Returns:
-        str: Letra correspondente ou o próprio caractere se já for letra.
+    """ 
+    Converte um dígito numérico em letra correspondente para uso na Cifra de Hill (0=A, 1=B, ..., 9=J). 
+    
+    Args: 
+        c (str): Caractere que será convertido. 
+        
+    Returns: 
+        str: Letra correspondente ao dígito ou o próprio caractere caso já seja uma letra. 
     """
+
     if c.isdigit():
         return chr(ord('A') + int(c))
     return c
 
 def _letra_para_digito(c, era_digito):
-    """Converte letra de volta para dígito se necessário.
-    Args:
-        c (str): Letra a ser convertida.
-        era_digito (bool): Se o caractere original era um dígito.
-    Returns:
-        str: Dígito correspondente ou a própria letra.
+    """ 
+    Converte uma letra novamente em dígito, caso o caractere original tenha sido numérico. 
+    
+    Args: 
+        c (str): Letra a ser convertida. era_digito (bool): Indica se o caractere original era um dígito. 
+        
+    Returns: 
+        str: Dígito correspondente ou a própria letra. 
     """
+
     if era_digito:
         return str(ord(c) - ord('A'))
     return c
 
 def _letra_para_num(c):
-    """Converte letra para número conforme tabela da Cifra de Hill (A=1, Z=0).
-    Args:
-        c (str): Caractere a ser convertido.
-    Returns:
-        int: Número correspondente.
+    """ 
+    Converte uma letra em número de acordo com a tabela utilizada na Cifra de Hill (A=1 e Z=0). 
+    
+    Args: 
+        c (str): Letra a ser convertida. 
+        
+    Returns: 
+        int: Valor numérico correspondente à letra. 
     """
     c = c.upper()
     if c == 'Z':
@@ -36,11 +46,14 @@ def _letra_para_num(c):
     return ord(c) - ord('A') + 1
 
 def _num_para_letra(n):
-    """Converte número para letra conforme tabela da Cifra de Hill.
-    Args:
-        n (int): Número a ser convertido.
-    Returns:
-        str: Letra correspondente.
+    """ 
+    Converte um número em letra de acordo com a tabela utilizada na Cifra de Hill. 
+    
+    Args: 
+        n (int): Número a ser convertido. 
+        
+    Returns: 
+        str: Letra correspondente ao valor numérico. 
     """
     n = n % 26
     if n == 0:
@@ -48,11 +61,14 @@ def _num_para_letra(n):
     return chr(ord('A') + n - 1)
 
 def cifrar(texto):
-    """Criptografa um texto usando a Cifra de Hill.
-    Args:
-        texto (str): O dado original (CPF, Chave ou Protocolo).
-    Returns:
-        str: O texto cifrado pronto para o banco de dados.
+    """ 
+    Criptografa um texto utilizando a Cifra de Hill. 
+    
+    Args: 
+        texto (str): Texto original que será criptografado, como CPF, chave ou protocolo. 
+        
+    Returns: 
+        str: Texto criptografado pronto para armazenamento ou utilização no sistema. 
     """
     texto = texto.upper()
 
@@ -78,13 +94,15 @@ def cifrar(texto):
     return "".join(resultado)
 
 def decifrar(texto_cifrado):
-    """Descriptografa um texto cifrado pela Cifra de Hill.
-    Args:
-        texto_cifrado (str): O texto cifrado armazenado no banco.
-    Returns:
-        str: O texto original descriptografado.
+    """ 
+    Descriptografa um texto previamente cifrado utilizando a Cifra de Hill. 
+   
+    Args: 
+        texto_cifrado (str): Texto criptografado armazenado no sistema ou banco de dados. 
+        
+     Returns: 
+        str:Texto original descriptografado. 
     """
-    
     
     CHAVE_INV = [
         [(3 * 5) % 26,  (3 * -3) % 26],
