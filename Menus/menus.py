@@ -87,11 +87,12 @@ def edicao():
     print("\n== EDIÇÃO ==")
     print("\n0- Voltar")
     print("1- Remover Eleitor")
-    print("2- Editar Eleitor")
-    print("3- Editar Candidato")
-    print("4- Buscar Eleitor")
-    print("5- Buscar Candidato")
-    print("6- Rever Chave de Acesso")
+    print('2- Remover Candidato') 
+    print("3- Editar Eleitor")
+    print("4- Editar Candidato")
+    print("5- Buscar Eleitor")
+    print("6- Buscar Candidato")
+    print("7- Rever Chave de Acesso")
     i=int(input("\nEscolha a Opção Desejada: "))
 
     if(i==0):
@@ -110,20 +111,34 @@ def edicao():
         else:
             print("Operação de remoção cancelada. Retornando ao menu de edição...")
             edicao()    
-    
     elif(i==2):
-        editar_eleitor()
+        remove_numero = input("Digite o número do candidato que deseja remover: ")
+        confirmacao = input(f"Tem certeza que deseja remover o candidato com número {remove_numero}? (S/N): ")
+        
+        while confirmacao not in ['S','s','n','N']:
+            print("Opção inválida. Por favor, digite 'S' para sim ou 'N' para não.")
+            confirmacao = input(f"Tem certeza que deseja remover o candidato com número {remove_numero}? (S/N): ")
+        
+        if confirmacao in ['S','s']:
+            from Códigos_fonte.edicao.remover_eleitor import apagar_candidato_do_banco as remover_candidato
+            remover_candidato(remove_numero)
+        else:
+            print("Operação de remoção cancelada. Retornando ao menu de edição...")
+            edicao()
     
     elif(i==3):
+        editar_eleitor()
+    
+    elif(i==4):
         editar_candidato()
 
-    elif(i==4):
+    elif(i==5):
         busca()
 
-    elif(i==5):
+    elif(i==6):
         buscar_candidato()
 
-    elif(i==6):
+    elif(i==7):
         rever_chave_acesso()
 
     
@@ -260,7 +275,7 @@ def auditoria():
 
     if(i==0):
         sistema_votacao()
-        
+
     elif(i==1):
         print("\n== LOG DE OCORRÊNCIA ==")
         from Votacao.log import exibir_logs
