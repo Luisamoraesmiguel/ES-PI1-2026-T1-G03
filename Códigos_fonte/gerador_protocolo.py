@@ -3,13 +3,13 @@ import string
 
 def criar_novo_protocolo(numero_candidato):
     
-     """
+    """
     Gera um protocolo de votação seguindo o padrão oficial do LAD.Py.
     Padrão: V + 2 letras + 26 + Candidato (2 dígitos) + 5 números.
-    
+
     Args:
-        numero_candidato (str/int): O número do candidato escolhido.
-        
+        numero_candidato (str ou int): O número do candidato escolhido.
+
     Returns:
         str: O protocolo em texto claro para ser exibido ao eleitor.
     """
