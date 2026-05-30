@@ -62,8 +62,8 @@ def cadastrar_eleitor():
     conexao = conectar()
     cursor = conexao.cursor()
     try:
-        cursor.execute("INSERT INTO eleitores (nome, titulo, cpf, mesario, chave_de_acesso) VALUES (%s, %s, %s, %s, %s)", 
-                       (nome, titulo, cifrar(cpf), mesario, cifrar(chave_acesso)))
+        cursor.execute("INSERT INTO eleitores (nome, titulo, cpf, mesario, chave_de_acesso, votou) VALUES (%s, %s, %s, %s, %s, %s)", 
+                       (nome, titulo, cifrar(cpf), mesario, cifrar(chave_acesso), 'N'))
         conexao.commit()
         print(f"\n[SUCESSO] Eleitor cadastrado! Chave: {chave_acesso}")
     except Exception as e:
