@@ -33,8 +33,9 @@ def exibir_protocolos():
     conexao = conectar()
     cursor = conexao.cursor()
 
-    cursor.execute("SELECT protocolo_votacao FROM votos ORDER BY Id ASC")
+    cursor.execute("SELECT protocolo_votacao FROM votos ")
     resultados = cursor.fetchall()
+    resultados_decifrados = sorted([descriptografar_protocolo(p) for (p,) in resultados]) 
 
     cursor.close()
     conexao.close()
