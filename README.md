@@ -1,9 +1,56 @@
-O presente projeto acadêmico, intitulado Sistema de Votação, foi desenvolvido no curso de Engenharia de Software da PUC-Campinas com o objetivo de simular um ecossistema eleitoral completo. A proposta consiste na integração entre as linguagens Python e SQL, utilizando o banco de dados MySQL, a fim de representar de forma prática e estruturada as principais etapas de um processo de votação.
+# LAD.Py — Sistema de Votação Digital
+Projeto Integrador I — Engenharia de Software | PUC Campinas  
+Prof. Dr. Luã Marcelo Muriana | 2026
 
-O sistema é responsável por gerenciar desde o cadastro detalhado de pessoas físicas até o momento da votação, permitindo o armazenamento, consulta e manipulação de dados. Dessa forma, busca-se aplicar conceitos fundamentais da área de desenvolvimento de software, como a implementação de operações CRUD (Create, Read, Update e Delete), modelagem de banco de dados relacional e integração entre aplicação e banco de dados.
+---
 
-Para o desenvolvimento do projeto, foram utilizadas as ferramentas Visual Studio Code, GitHub e MySQL Workbench. A linguagem Python foi adotada como base para a lógica do sistema, sendo responsável pela comunicação com o banco de dados e execução das funcionalidades propostas.
+## Descrição
 
-Entre as principais funcionalidades do sistema, destacam-se o cadastro de usuários, o registro de votos, a consulta de informações armazenadas e a simulação de um processo eleitoral simplificado. O projeto tem como foco consolidar conhecimentos práticos adquiridos ao longo do curso, promovendo a integração entre teoria e prática no desenvolvimento de sistemas.
+O **LAD.Py** é um sistema de votação digital com finalidade exclusivamente didática, executado via terminal. O projeto integra Python, MySQL e criptografia por **Cifra de Hill** para proteger dados sensíveis, simulando um ecossistema eleitoral completo com três módulos principais:
 
-O desenvolvimento foi realizado em equipe, sendo composto pelos integrantes Arthur Peripolli, Beatriz Valadares, Letícia Leme, Luisa Moraes e Sabrina Prates, que colaboraram de forma conjunta na construção e organização do sistema.
+- **Gerenciamento** — cadastro, edição, remoção, busca e listagem de eleitores e candidatos, com validação matemática de CPF e Título de Eleitor e geração automática de chave de acesso criptografada.
+- **Votação** — abertura da urna com autenticação do mesário, Zerézima, coleta de votos com emissão de protocolo criptografado e encerramento com dupla confirmação.
+- **Auditoria e Resultados** — logs de ocorrências, boletim de urna, estatísticas de comparecimento, votos por partido e validação de integridade.
+
+---
+
+## Integrantes
+
+- Arthur Peripolli
+- Beatriz Valadares
+- Letícia Leme
+- Luisa Moraes
+- Sabrina Prates
+
+---
+
+## Tecnologias Utilizadas
+
+- Python 3.10+
+- MySQL Server 8.0+
+- Bibliotecas: `mysql-connector-python`, `datetime`, `random`, `os`
+- Ferramentas: VS Code, MySQL Workbench, GitHub
+
+---
+
+## Como Executar
+
+**1. Instale a dependência:**
+```bash
+pip install mysql-connector-python
+```
+
+**2. Configure o banco de dados:**  
+Execute o arquivo `Database/banco_dados.sql` no MySQL Workbench para criar o banco `tabela_bd`.
+
+**3. Configure a conexão:**  
+Abra `conexao.py` e ajuste `host`, `user`, `password` e `database` com suas credenciais.
+
+**4. Execute o sistema:**
+```bash
+python main.py
+```
+
+---
+
+> Este projeto é uma simulação acadêmica e não possui relação com sistemas de votação utilizados em processos eleitorais reais.
