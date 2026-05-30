@@ -4,6 +4,7 @@ from Códigos_fonte.zerezima import zerezima
 from Votacao.log import registrar_log
 
 
+
 def abertura_votacao():
 
     """
@@ -47,5 +48,7 @@ def abertura_votacao():
 
     print("\nZerezima realizada com sucesso!")
     
-
+    from Menus.menus import menu_votacao
+    menu_votacao()
     return True
+    
