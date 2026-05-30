@@ -25,9 +25,25 @@ def cadastrar_eleitor():
     mesario = input("O eleitor é mesário? (S/N): ").upper().strip()
 
     while not validar_cpf(cpf):
-        cpf = input("Digite o CPF do eleitor (apenas números): ")
+        cpf = input ('Digite o CPF: ')
         if not validar_cpf(cpf):
             print("CPF inválido. Por favor, tente novamente.")
+        else:
+            from conexao import conectar
+            from Criptografia import cifrar
+            conexao = conectar()
+            cursor = conexao.cursor()
+            cpf_cifrado = cifrar(cpf)
+            cursor.execute("SELECT cpf FROM eleitores WHERE cpf = %s", (cpf_cifrado,))
+            if cursor.fetchone() is not None:
+                print("\nCPF já cadastrado. Tente novamente.")
+                cursor.close()
+                conexao.close()
+                cpf = ""
+            else:
+                cursor.close()
+                conexao.close()
+                break
 
     titulo_valido = False
     while not titulo_valido:
