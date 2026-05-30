@@ -40,19 +40,29 @@ def gravar_voto_no_banco(numero_escolhido, titulo_eleitor):
     conexao = conectar()
     cursor = conexao.cursor()
 
+    
+    cursor.execute("SELECT Id FROM candidatos WHERE Num_votacao = %s", (numero_escolhido,))
+    resultado_id = cursor.fetchone()
+    
+    if resultado_id:
+        id_verdadeiro = resultado_id[0]
+    else:
+        
+        id_verdadeiro = None 
+
     data_hora_voto = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     protocolo_original = gerar_protocolo(numero_escolhido)
     protocolo_cifrado = cifrar(protocolo_original) 
     
+   
     comando_sql = "INSERT INTO votos (Candidato, Datahora, protocolo_votacao) VALUES (%s, %s, %s)"
-    cursor.execute(comando_sql, (numero_escolhido, data_hora_voto, protocolo_cifrado))
+    cursor.execute(comando_sql, (id_verdadeiro, data_hora_voto, protocolo_cifrado))
 
     sql_status = "UPDATE eleitores SET votou = 'S' WHERE titulo = %s"
     cursor.execute(sql_status, (titulo_eleitor,)) 
     
     conexao.commit()
-    print("\nSucesso: Voto registrado!")
 
     cursor.close()
     conexao.close()

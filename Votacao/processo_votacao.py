@@ -44,18 +44,21 @@ def realizar_fluxo_votacao():
     if eleitor == "INVALIDO":
         print("\n[ERRO] Credenciais incorretas.")
         registrar_log("ALERTA: Tentativa de acesso negado - credenciais invalidas")
+        input("\nPressione Enter para retornar")
         from Menus.menus import menu_votacao
         menu_votacao()
     
     elif eleitor == "JA_VOTOU":
         print("\n[ERRO] Este eleitor já realizou o voto anteriormente.")
         registrar_log("ALERTA: Tentativa de voto duplo")
+        input("\nPressione Enter para retornar")
         from Menus.menus import menu_votacao
         menu_votacao()
 
     elif eleitor == "CPF_ERRADO":
         print("\n[ERRO] CPF não confere.")
         registrar_log("ALERTA: Tentativa de voto com CPF incorreto")
+        input("\nPressione Enter para retornar")
         from Menus.menus import menu_votacao
         menu_votacao()
 
@@ -85,19 +88,20 @@ def processar_escolha_candidato(titulo_eleitor, nome_eleitor):
 
     while voto_finalizado == False:
         numero = input("\nDigite o número do candidato: ")
+        
+        
         candidato = busca(numero)
 
-        if candidato:
-            print(f"CANDIDATO: {candidato['nome']} | Numero: {candidato['numero']} | PARTIDO: {candidato['partido']}")
-        else:
+        
+        if not candidato:
             print("CANDIDATO NÃO ENCONTRADO - VOTO SERÁ NULO.")
-            input("Pressione Enter para continuar...")
             numero = "00"
-        confirmar = input("Confirma o voto? (S/N): ").upper().strip()
+
+        confirmar = input("\nConfirma o voto? (S/N): ").upper().strip()
         
         if confirmar == "S":
             
-            protocolo = registrar_voto.gravar_voto_no_banco(candidato['id'], titulo_eleitor)
+            protocolo = registrar_voto.gravar_voto_no_banco(numero, titulo_eleitor)
             
             print("\n" + "*"*40)
             print("          VOTO CONFIRMADO!")
@@ -111,6 +115,3 @@ def processar_escolha_candidato(titulo_eleitor, nome_eleitor):
             return
         else:
             print("\nVoltando para a inserção do número...")
-
-           
-
