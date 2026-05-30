@@ -158,12 +158,12 @@ def busca():
     elif(i==1):
         dado=input("Digite o CPF (sem espaços) ou o Título: ")
         resultado = buscar(dado)
-        print(resultado)
+        
 
     elif(i==2):
-        dado=input("Digite o CPF (sem espaços) ou o Título: ")
-        resultado = buscar(dado)
-        print(resultado)
+        dado=input("Digite o número do candidato: ")
+        resultado = buscar_candidato(dado)
+        
 
     elif(i==4):
         buscar_candidato()

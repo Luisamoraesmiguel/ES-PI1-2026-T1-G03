@@ -69,13 +69,19 @@ def buscar_candidato(numero):
     
     cursor.close()
     conexao.close()
-    
     if resultado is None:
+        print("\n" + "="*30)
+        print("\n  CANDIDATO NÃO ENCONTRADO")
+        print("="*30 + "\n")
         return None
+
+    print("\n" + "="*30)
+    print("  CANDIDATO ENCONTRADO")
+    print("="*30)
+    print(f"\nNOME:    {resultado[1]}")
+    print(f"NÚMERO:  {resultado[2]}")
+    print(f"PARTIDO: {resultado[3]}")
+    print("="*30 + "\n")
+
+    return resultado
     
-    return {
-        "id": resultado[0],
-        "nome": resultado[1],
-        "numero": resultado[2],
-        "partido": resultado[3]
-    }
