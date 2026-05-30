@@ -47,7 +47,7 @@ def buscar_eleitor(dado):
     cursor.close()
     conexao.close()
 
-    return resultado
+     
 
 def buscar_candidato(numero):
     """

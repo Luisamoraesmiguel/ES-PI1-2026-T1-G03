@@ -1,5 +1,6 @@
 import mysql.connector
 from conexao import conectar
+from Votacao.log import registrar_log
 
 def executar_encerramento_logica():
 
@@ -43,9 +44,8 @@ def executar_encerramento_logica():
                 print("\n--- RESULTADOS CONSOLIDADOS ---")
                 for nome, total in resultados:
                     print(f"Candidato: {nome} | Votos: {total}")
-                    
-                    from log import registrar_log
-                    registrar_log(f"ENCERRAMENTO: Votação finalizada com sucesso! ")
+                
+                registrar_log("ENCERRAMENTO: Votação finalizada com sucesso!")
 
                 cursor.close()
                 conn.close()
