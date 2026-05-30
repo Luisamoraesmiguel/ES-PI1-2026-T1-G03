@@ -122,3 +122,59 @@ def decifrar(texto_cifrado):
         resultado.append(_num_para_letra(p2))
 
     return "".join(resultado)
+
+
+def decifrar_cpf(texto_cifrado):
+    """
+    Descriptografa um CPF cifrado, convertendo o resultado de volta para o números.
+
+    Args:
+        texto_cifrado (str): CPF criptografado recuperado do banco de dados.
+
+    Returns:
+        str: CPF original composto estritamente por 11 dígitos numéricos.
+    """
+
+    texto_decifrado = decifrar(texto_cifrado)
+    
+    cpf_numeros = "".join(str(ord(c) - ord('A')) for c in texto_decifrado[:11])
+    
+    return cpf_numeros
+
+
+def decifrar_chave(texto_cifrado):
+    """
+    Descriptografa uma Chave de Acesso, restaurando os 4 dígitos finais originais.
+
+    Args:
+        texto_cifrado (str): Chave de acesso criptografada recuperada do banco.
+
+    Returns:
+        str: Chave original no formato de 3 letras seguidas de 4 números.
+    """
+    texto_decifrado = decifrar(texto_cifrado)
+    
+    letras = texto_decifrado[:3]
+    
+    numeros = "".join(str(ord(c) - ord('A')) for c in texto_decifrado[3:7])
+    
+    return letras + numeros
+
+
+def decifrar_protocolo(texto_cifrado):
+    """
+    Descriptografa um Protocolo de Votação, restaurando os 9 dígitos numéricos finais.
+
+    Args:
+        texto_cifrado (str): Protocolo criptografado recuperado do banco.
+
+    Returns:
+        str: Protocolo original no formato V + 2 letras + 9 números.
+    """
+    texto_decifrado = decifrar(texto_cifrado)
+    
+    letras = texto_decifrado[:3]
+    
+    numeros = "".join(str(ord(c) - ord('A')) for c in texto_decifrado[3:12])
+    
+    return letras + numeros

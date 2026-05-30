@@ -24,9 +24,11 @@ def rever_chave_acesso():
         letras = chave_de_acesso[:3]
         numeros = ''.join(str(ord(c) - ord('A')) for c in chave_de_acesso[3:7]) # Converte as letras restantes para números
         print(f"A chave de acesso do eleitor com título {titulo} é: {letras}{numeros}")
+        input("Pressione Enter para retornar")
     
     else:
         print("Eleitor não encontrado.")
+        input("Pressione Enter para retornar")
     cursor.close()
     conexao.close()
 
