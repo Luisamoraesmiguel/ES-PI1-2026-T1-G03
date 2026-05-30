@@ -91,6 +91,7 @@ def processar_escolha_candidato(titulo_eleitor, nome_eleitor):
             print(f"CANDIDATO: {candidato['nome']} | Numero: {candidato['numero']} | PARTIDO: {candidato['partido']}")
         else:
             print("CANDIDATO NÃO ENCONTRADO - VOTO SERÁ NULO.")
+            input("Pressione Enter para continuar...")
             numero = "00"
         confirmar = input("Confirma o voto? (S/N): ").upper().strip()
         
