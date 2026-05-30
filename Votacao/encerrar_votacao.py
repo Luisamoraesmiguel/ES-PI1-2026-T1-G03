@@ -3,7 +3,6 @@ from conexao import conectar
 from Votacao.log import registrar_log
 
 def executar_encerramento_logica():
-
     """
     Valida as credenciais do mesário para autorizar o encerramento da votação e consolidar os resultados.
 
@@ -30,7 +29,7 @@ def executar_encerramento_logica():
 
         if confirmacao == 'sim':
             segunda_chave = input("Digite novamente a chave de acesso do mesário: ")
-            
+
             if segunda_chave == chave:
                 query_consolidar = """
                     SELECT c.Nome, COUNT(v.Id) 
@@ -44,8 +43,8 @@ def executar_encerramento_logica():
                 print("\n--- RESULTADOS CONSOLIDADOS ---")
                 for nome, total in resultados:
                     print(f"Candidato: {nome} | Votos: {total}")
-                
-                registrar_log("ENCERRAMENTO: Votação finalizada com sucesso!")
+
+                registrar_log("ENCERRAMENTO: Votação finalizada com sucesso.")
 
                 cursor.close()
                 conn.close()
