@@ -39,10 +39,12 @@ def buscar_eleitor(dado):
         print(f"CPF:     {Criptografia.decifrar(resultado['cpf'])}")
         print(f"MESÁRIO: {'SIM' if resultado['mesario'] else 'NÃO'}")
         print("="*30 + "\n")
+        input("Pressione Enter para retornar")
     else:
         print("\n" + "="*30)
         print("\n   ELEITOR NÃO ENCONTRADO")
         print("="*30 + "\n")
+        input("Pressione Enter para retornar")
 
     cursor.close()
     conexao.close()
@@ -73,6 +75,7 @@ def buscar_candidato(numero):
         print("\n" + "="*30)
         print("\n  CANDIDATO NÃO ENCONTRADO")
         print("="*30 + "\n")
+        input("Pressione Enter para retornar")
         return None
 
     print("\n" + "="*30)
@@ -82,6 +85,7 @@ def buscar_candidato(numero):
     print(f"NÚMERO:  {resultado[2]}")
     print(f"PARTIDO: {resultado[3]}")
     print("="*30 + "\n")
+    input("Pressione Enter para retornar")
 
     return resultado
     
