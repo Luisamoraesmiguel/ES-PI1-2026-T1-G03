@@ -284,7 +284,7 @@ def auditoria():
     os.system('cls')
     print("\n== AUDITORIA ==")
     print("\n1- Log de Ocorrência")
-    #print("2- Protocolo")
+    print("2- Protocolo")
     print("0- Voltar")
 
     i=int(input("\nEscolha a Opção Desejada: "))
@@ -298,10 +298,10 @@ def auditoria():
         exibir_logs()
         input("\nPressione Enter para voltar...")
         auditoria()
-    #elif(i==2):
-        #print("\n== PROTOCOLO DE VOTAÇÃO ==")
-        #from Votacao.log import exibir_protocolo
-        #exibir_protocolo()
+    elif(i==2):
+        print("\n== PROTOCOLO DE VOTAÇÃO ==")
+        from Auditoria.protocolos import exibir_protocolos
+        exibir_protocolos()
 
 def resultado():
     os.system('cls')
