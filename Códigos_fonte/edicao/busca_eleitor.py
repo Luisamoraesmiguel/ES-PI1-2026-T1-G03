@@ -75,7 +75,7 @@ def buscar_candidato(numero):
         print("\n" + "="*30)
         print("\n  CANDIDATO NÃO ENCONTRADO")
         print("="*30 + "\n")
-        input("Pressione Enter para retornar")
+        input("Pressione Enter para prosseguir")
         return None
 
     print("\n" + "="*30)
@@ -85,7 +85,7 @@ def buscar_candidato(numero):
     print(f"NÚMERO:  {resultado[2]}")
     print(f"PARTIDO: {resultado[3]}")
     print("="*30 + "\n")
-    input("Pressione Enter para retornar")
+    input("Pressione Enter para prosseguir")
 
     return resultado
     
