@@ -22,6 +22,7 @@ def editar_candidato():
 
     if candidato is None:
         print("[ERRO] Candidato não encontrado.")
+        input("\nPressione Enter para voltar...") # Adicionado para dar tempo de ler
         cursor.close()
         conexao.close()
         return
@@ -39,6 +40,7 @@ def editar_candidato():
         novo = input("Novo nome: ")
         if novo.strip() == "" or novo.isdigit():
             print("Nome inválido. Por favor, tente novamente.")
+            input("\nPressione Enter para voltar...")
             cursor.close()
             conexao.close()
             return
@@ -49,9 +51,25 @@ def editar_candidato():
         novo = input("Novo número: ")
         if not novo.isdigit():
             print("Número inválido. Por favor, tente novamente.")
+            input("\nPressione Enter para voltar...")
             cursor.close()
             conexao.close()
             return
+        
+        # --- NOVA TRAVA DE DUPLICIDADE AQUI ---
+        # Verificamos se o NOVO número já pertence a OUTRO candidato antes de tentar o UPDATE
+        cursor.execute("SELECT Nome FROM candidatos WHERE Num_votacao = %s", (novo,))
+        conflito = cursor.fetchone()
+        
+        if conflito:
+            print(f"\n[ERRO] O número {novo} já pertence ao candidato {conflito[0]}.")
+            print("Operação abortada para evitar erro de duplicidade.")
+            input("\nPressione ENTER para voltar...") # Pausa para você ler o erro
+            cursor.close()
+            conexao.close()
+            return
+        # --------------------------------------
+
         cursor.execute("UPDATE candidatos SET Num_votacao = %s WHERE Num_votacao = %s", (novo, numero))
         print(f"Número atualizado para {novo} com sucesso!")
 
@@ -59,6 +77,7 @@ def editar_candidato():
         novo = input("Novo partido: ")
         if novo.strip() == "":
             print("Partido inválido. Por favor, tente novamente.")
+            input("\nPressione Enter para voltar...")
             cursor.close()
             conexao.close()
             return
@@ -72,11 +91,13 @@ def editar_candidato():
 
     else:
         print("\nOpção inválida, Tente novamente.")
+        input("\nPressione Enter para voltar...")
         cursor.close()
         conexao.close()
         return
 
     conexao.commit()
     print("\nCandidato atualizado com sucesso!")
+    input("\nPressione Enter para concluir...") # Pausa final
     cursor.close()
     conexao.close()
