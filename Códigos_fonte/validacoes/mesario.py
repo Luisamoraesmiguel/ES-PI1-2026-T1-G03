@@ -27,7 +27,8 @@ def verificar_mesario(titulo, cpf_4digitos, chave):
     
     nome_db, cpf_banco, mesario_status = resultado
 
-    if mesario_status.upper() == 'N':
+    if mesario_status.strip().upper() == 'N':
+        print("Usuário não é mesário autorizado.")
         cursor.close()
         conexao.close()
         return "NAO_AUTORIZADO"

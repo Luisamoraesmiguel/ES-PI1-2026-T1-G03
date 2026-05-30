@@ -25,7 +25,8 @@ def abertura_votacao():
     cpf = input("Digite os 4 primeiros dígitos do CPF do mesário: ")
     chave = input("Digite a chave de acesso do mesário: ").upper().strip()
 
-    while verificar_mesario(titulo, cpf, chave) == "INVALIDO":
+    resultado = verificar_mesario(titulo, cpf, chave)
+    while resultado == "INVALIDO" or resultado == "NAO_AUTORIZADO" or resultado == "CPF_INCORRETO":
         print("Erro: Dados inválidos. Por favor, tente novamente.")
         registrar_log("ALERTA: Tentativa de acesso negado")
         N = input("Deseja tentar novamente? (S/N): ").upper().strip()
