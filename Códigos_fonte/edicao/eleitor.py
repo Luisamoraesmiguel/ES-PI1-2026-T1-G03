@@ -35,7 +35,6 @@ def editar_eleitor():
     print("2- Título")
     print("3- CPF")
     print("4- Mesário (S/N)")
-    print("5- Chave de acesso")
     print("0- Voltar")
 
     opcao = input("Escolha: ")
@@ -92,13 +91,7 @@ def editar_eleitor():
         conexao.commit()
         print(f"Status de mesário atualizado para {novo} com sucesso!")
 
-    elif opcao == "5":
-        novo = input("Nova chave de acesso: ").upper()
-        novo_cifrado = cifrar(novo)
-        cursor.execute("UPDATE eleitores SET chave_de_acesso = %s WHERE titulo = %s", (novo, titulo))
-        conexao.commit()
-        print(f"Chave de acesso ({novo}) atualizada com sucesso!")
-
+    
     elif opcao == "0":
         cursor.close()
         conexao.close()

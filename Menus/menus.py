@@ -92,9 +92,8 @@ def edicao():
     print('2- Remover Candidato') 
     print("3- Editar Eleitor")
     print("4- Editar Candidato")
-    print("5- Buscar Eleitor")
-    print("6- Buscar Candidato")
-    print("7- Rever Chave de Acesso")
+    print("5- Buscar")
+    print("6- Rever Chave de Acesso")
     i=int(input("\nEscolha a Opção Desejada: "))
 
     if(i==0):
@@ -138,9 +137,6 @@ def edicao():
         busca()
 
     elif(i==6):
-        buscar_candidato()
-
-    elif(i==7):
         rever_chave_acesso()
 
     
@@ -149,8 +145,8 @@ def edicao():
 def busca():
     os.system('cls')
     print("\n== Busca ==")
-    print("\n1- Pesquisar")
-    print("2- Listar")
+    print("\n1- Pesquisar eleitor")
+    print("2- Pesquisar candidato")
     print("0- Voltar")
     
 
@@ -165,7 +161,13 @@ def busca():
         print(resultado)
 
     elif(i==2):
-        listar_eleitores()
+        dado=input("Digite o CPF (sem espaços) ou o Título: ")
+        resultado = buscar(dado)
+        print(resultado)
+
+    elif(i==4):
+        buscar_candidato()
+
 
 
 
