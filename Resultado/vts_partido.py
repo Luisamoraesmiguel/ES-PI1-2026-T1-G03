@@ -20,8 +20,17 @@ def votos_por_partido():
     resultados = cursor.fetchall() 
 
     print("\n== VOTOS POR PARTIDO ==")
+
+    votos_nulos = 0
+
     for partido, total in resultados:
-        print(f"\nPartido: {partido} | Votos: {total}")
+        if partido == 'NULO':
+            votos_nulos = total
+        else:
+            print(f"Partido: {partido} | Votos: {total}")
+
+    print("-" * 30)
+    print(f"VOTOS NULOS (Sem Partido): {votos_nulos}")
 
     cursor.close()
     conexao .close()

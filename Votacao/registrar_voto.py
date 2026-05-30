@@ -48,7 +48,14 @@ def gravar_voto_no_banco(numero_escolhido, titulo_eleitor):
         id_verdadeiro = resultado_id[0]
     else:
         
-        id_verdadeiro = None 
+        cursor.execute("SELECT Id FROM candidatos WHERE Num_votacao = 0")
+        nulo = cursor.fetchone()
+        if nulo:
+            id_verdadeiro = nulo[0]
+        else:
+            cursor.execute("INSERT INTO candidatos (Nome, Num_votacao, Partido) VALUES ('VOTO NULO', 0, 'NULO')")
+            conexao.commit()
+            id_verdadeiro = cursor.lastrowid  
 
     data_hora_voto = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 

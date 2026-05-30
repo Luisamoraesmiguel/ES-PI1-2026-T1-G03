@@ -21,15 +21,26 @@ def boletim_da_urna():
 
     print("\n== BOLETIM DE URNA ==")
     for nome, numero, partido, total in resultados:
-        print(f"Candidato: {nome} | Número: {numero} | Partido: {partido} | Votos: {total}")
+        if numero == 0 or partido == 'NULO':
+            votos_nulos = total
+        else:
+
+            print(f"Candidato: {nome} | Número: {numero} | Partido: {partido} | Votos: {total}")
+
+    print("-" * 30)
+    print(f"Votos Nulos e Brancos: {votos_nulos}")
 
 
-    sql_vencedor = "SELECT c.Nome, c.Num_votacao, c.Partido, COUNT(v.Id) as total FROM candidatos c LEFT JOIN votos v ON c.Id = v.Candidato GROUP BY c.Id ORDER BY total DESC LIMIT 1"
+    sql_vencedor = "SELECT c.Nome, c.Num_votacao, c.Partido, COUNT(v.Id) as total FROM candidatos c LEFT JOIN votos v ON c.Id = v.Candidato WHERE c.Num_votacao != 0 GROUP BY c.Id ORDER BY total DESC LIMIT 1"
     cursor.execute(sql_vencedor)
     vencedor = cursor.fetchone()
 
-    print("\n== VENCEDOR ==")
-    print(f"Nome: {vencedor[0]} | Número: {vencedor[1]} | Partido: {vencedor[2]} | Votos: {vencedor[3]}")
+    if vencedor:
+        print("\n== VENCEDOR PARCIAL ==")
+        print(f"Nome: {vencedor[0]} | Número: {vencedor[1]} | Partido: {vencedor[2]} | Votos: {vencedor[3]}")
+    else:
+        print("\n== VENCEDOR PARCIAL ==\nNenhum candidato real recebeu votos válidos ainda.")
+
     cursor.close() 
     conexao.close() 
     input("\nPressione Enter para continuar...")

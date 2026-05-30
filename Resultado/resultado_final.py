@@ -18,11 +18,18 @@ def resultado_final():
         SELECT c.Nome, c.Num_votacao, c.Partido, COUNT(v.Id) as total 
         FROM candidatos c 
         LEFT JOIN votos v ON c.Id = v.Candidato 
+        WHERE c.Num_votacao != 0 
         GROUP BY c.Id 
         ORDER BY total DESC 
     """
     cursor.execute(sql_vencedor)
-    resultados = cursor.fetchall() # Obtém todos os candidatos ordenados por votos
+    resultados = cursor.fetchall() 
+
+    if not resultados:
+        print("\n== RESULTADO FINAL ==\nNão há candidatos reais cadastrados.")
+        cursor.close()
+        conexao.close()
+        return
 
     max_votos= resultados[0][3]
     vecedores =[r for r in resultados if r[3] == max_votos]
@@ -55,13 +62,20 @@ def resultado_final():
             ORDER BY total DESC
         """
         cursor.execute(sql)
-        resultados = cursor.fetchall()
+        todos_resultados = cursor.fetchall()
 
         print("\n== VOTOS POR CANDIDATO ==")
-        for nome, numero, partido, total in resultados:
-            print(f"{nome} | Número: {numero} | Partido: {partido} | Votos: {total}")
+        votos_nulos = 0
+        for nome, numero, partido, total in todos_resultados:
+            if numero == 0 or partido == 'NULO':
+                votos_nulos = total
+            else:
+                print(f"{nome} | Número: {numero} | Partido: {partido} | Votos: {total}")
+        
+        print(f"\nVOTOS NULOS: {votos_nulos}")
 
-        print("\n pressione Enter para voltar...")
+        print("\nPressione Enter para voltar...")
         input()
+
     cursor.close()
     conexao.close()

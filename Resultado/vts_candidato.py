@@ -43,9 +43,15 @@ def votos_por_candidato():
     if not resultados:
         print("Nenhum candidato cadastrado.")
     else:
+        votos_nulos = 0
+        for nome, numero, partido, total in resultados:
+            if numero == 0 or partido == 'NULO':
+                votos_nulos = total
+            else:
+                print(f"Nº {numero} | {nome} ({partido}) - Votos: {total}")
         
-         for nome, numero, partido, total in resultados:
-            print(f"{numero} | {nome} ({partido}) - Votos: {total}")
+        print("-" * 30)
+        print(f"TOTAL DE VOTOS NULOS: {votos_nulos}")
 
 
     cursor.close()
