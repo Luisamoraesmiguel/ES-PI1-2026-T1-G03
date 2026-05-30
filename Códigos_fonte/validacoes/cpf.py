@@ -55,6 +55,9 @@ def validar_cpf(cpf):
             digito2 = 0
         else:
             digito2 = resultado
+
+    if int(cpf[9]) != digito1:
+        return False
     
     if int(cpf[10]) != digito2:
         return False
