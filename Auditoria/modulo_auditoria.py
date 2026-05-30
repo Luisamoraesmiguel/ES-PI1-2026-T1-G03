@@ -1,39 +1,41 @@
-import sys
 import os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from conexao import conectar
+# Importação absoluta a partir da raiz do projeto
+from Códigos_fonte.conexao import conectar
+from Votacao.log import exibir_logs
 
 def consultar_auditoria():
+    # Abre a conexão com o banco de dados
     conexao = conectar()
     cursor = conexao.cursor() 
 
+   
     cursor.execute("SELECT * FROM votos")
     resultados = cursor.fetchall() 
+ 
+    caminho_log_txt = "log_ocorrencias.txt"
+  
+    with open(caminho_log_txt, "a", encoding="utf-8") as arquivo:
+        print("\n" + "="*60)
+        print("RELATÓRIO DE AUDITORIA")
+        print("="*60)
 
-    arquivo = open("log_ocorrencias.txt", "w", encoding="utf-8")
+        if not resultados:
+            print("Nenhum voto encontrado no banco de dados.")
+        else:
+            for linha in resultados:
+                # Formata a linha para o log (removendo caracteres extras)
+                conteudo = str(linha).replace("(", "").replace(")", "").replace("'", "")
+                texto_log = "[REGISTRO DE VOTO]: " + conteudo
+                
+                print(texto_log)
+                arquivo.write(texto_log + "\n")
 
-    print("\n" + "="*60)
-    print("RELATÓRIO DE AUDITORIA")
-    print("="*60)
-
-    if not resultados:
-        print("Nenhum voto encontrado.")
-    else:
-        for linha in resultados:
-            # transformamos a linha toda em texto
-            # ele vai imprimir todas as colunas
-            conteudo = str(linha).replace("(", "").replace(")", "").replace("'", "")
-            
-            texto_log = "[REGISTRO]: " + conteudo
-            
-            print(texto_log)
-            arquivo.write(texto_log + "\n")
-
-    arquivo.close()
     cursor.close()
     conexao.close()
     
     print("\n" + "="*60)
-    print("Sucesso! O arquivo .txt foi gerado.")
+    print("Sucesso! Os registros de auditoria foram adicionados ao log.")
 
-consultar_auditoria()
+if __name__ == "__main__":
+    consultar_auditoria()
+    exibir_logs()
