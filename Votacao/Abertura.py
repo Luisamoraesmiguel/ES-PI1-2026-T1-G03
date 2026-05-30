@@ -2,6 +2,7 @@ import os
 from Códigos_fonte.validacoes.mesario import verificar_mesario
 from Códigos_fonte.zerezima import zerezima
 from Votacao.log import registrar_log
+from Menus.menus import menu_votacao
 
 def abertura_votacao():
 
@@ -25,8 +26,9 @@ def abertura_votacao():
 
     while verificar_mesario(titulo, cpf, chave) == "INVALIDO":
         print("Mesário não identificado. Por favor, tente novamente.")
-        N = input("Deseja tentar novamente? (S/N): ")
-        if N == 'N' or N == 'n':
+        registrar_log("ALERTA: Tentativa de acesso negado")
+        N = input("Deseja tentar novamente? (S/N): ").upper().strip()
+        if N == 'N':
             print("Retornando ao menu do sistema de votação...")
             return False
         titulo = input("\nDigite o número do título de eleitor do mesário: ")
@@ -34,26 +36,17 @@ def abertura_votacao():
         chave = input("Digite a chave de acesso do mesário: ").upper().strip()
 
     print("\nMesário identificado com sucesso!")
-   
+    
     input("Pressione Enter para realizar a Zerezima")
 
     while not zerezima():
         print("\nErro ao realizar a Zerezima. Por favor, tente novamente.")
         input("Pressione Enter para realizar a Zerezima")
+
+    registrar_log("ABERTURA: Votação iniciada com sucesso. Total de votos zerado.")
+
     print("\nZerezima realizada com sucesso!")
-    from Menus.menus import menu_votacao
+    
+    # Chama o menu e encerra a função
     menu_votacao()
     return True
-    
-
-    from Votacao.processo_votacao import realizar_fluxo_votacao
-    
-    continuar = True
-    while continuar:
-         realizar_fluxo_votacao()
-         resposta = input("\nDeseja realizar outro voto? (S/N): ").upper().strip()
-         if resposta == 'N':
-            continuar = False
-            print("Encerrando o sistema de votação. Obrigado!")
-    return True
-   
