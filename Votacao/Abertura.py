@@ -26,7 +26,7 @@ def abertura_votacao():
     chave = input("Digite a chave de acesso do mesário: ").upper().strip()
 
     while verificar_mesario(titulo, cpf, chave) == "INVALIDO":
-        print("Mesário não identificado. Por favor, tente novamente.")
+        print("Erro: Dados inválidos. Por favor, tente novamente.")
         registrar_log("ALERTA: Tentativa de acesso negado")
         N = input("Deseja tentar novamente? (S/N): ").upper().strip()
         if N == 'N':
