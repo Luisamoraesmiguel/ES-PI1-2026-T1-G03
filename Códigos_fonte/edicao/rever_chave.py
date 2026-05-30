@@ -1,6 +1,17 @@
 from conexao import conectar
 from Criptografia import decifrar
 def rever_chave_acesso():
+    """
+    Consulta e exibe a chave de acesso de um eleitor
+    a partir do número do título eleitoral informado.
+
+    Args:
+        Nenhum.
+
+    Returns:
+        None: Imprime a chave de acesso no terminal ou avisa
+              se o eleitor não foi encontrado.
+    """
     titulo = input("Digite o título do eleitor: ")
 
     conexao = conectar()

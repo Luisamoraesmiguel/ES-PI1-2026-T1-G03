@@ -5,9 +5,30 @@ from Votacao import registrar_voto
 from Votacao.log import registrar_log
 
 def limpar_tela():
+
+    """
+    Executa o comando de sistema operacional para limpar o terminal de exibição.
+
+    Args:
+        Nenhum.
+
+    Returns:
+        None: Não possui retorno de valor.
+    """
+    
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def realizar_fluxo_votacao():
+
+    """
+    Executa a verificação de credenciais do eleitor na urna e inicia a escolha do candidato se aprovado.
+
+    Args:
+        Nenhum.
+
+    Returns:
+        None: Não possui retorno de valor.
+    """
 
     limpar_tela()
     print("\n" + "="*30)
@@ -46,6 +67,17 @@ def realizar_fluxo_votacao():
 
 
 def processar_escolha_candidato(titulo_eleitor, nome_eleitor):
+
+    """
+    Gerencia o loop de digitação de número de candidato, conferência de dados e confirmação do voto pelo eleitor.
+
+    Args:
+        titulo_eleitor (str): O título de eleitor de quem está votando.
+        nome_eleitor (str): O nome do eleitor que está votando.
+
+    Returns:
+        None: Não possui retorno de valor.
+    """
    
     voto_finalizado = False
     
@@ -68,7 +100,7 @@ def processar_escolha_candidato(titulo_eleitor, nome_eleitor):
             
             print("\n" + "*"*40)
             print("          VOTO CONFIRMADO!")
-            print(f"  PROTOCOLO: {protocolo}")
+            print(f"  PROTOCOLO: {protocolo}".center(40))
             print("*"*40)
             input("\nPressione Enter para concluir...")
             

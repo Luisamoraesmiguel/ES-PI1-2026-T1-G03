@@ -74,9 +74,11 @@ def cadastro():
 
     elif(i==1):
         cadastrar_eleitor()
+        gerenciamento()
 
     elif(i==2):
         cadastrar_candidato()
+        gerenciamento()
 
     else:
         print("A opção escolhida é Inválida\n")

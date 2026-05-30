@@ -5,6 +5,16 @@ from Votacao.log import exibir_logs
 
 def consultar_auditoria():
     # Abre a conexão com o banco de dados
+    """
+    Consulta todos os votos registrados no banco de dados e gera um
+    arquivo de log com os registros encontrados.
+
+    Args:
+        Nenhum.
+
+    Returns:
+        None: Exibe os registros no terminal e salva em 'log_ocorrencias.txt'.
+    """
     conexao = conectar()
     cursor = conexao.cursor() 
 

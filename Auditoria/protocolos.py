@@ -2,6 +2,16 @@ from conexao import conectar
 from Criptografia import decifrar
 
 def exibir_protocolos():
+    """
+    Busca e exibe todos os protocolos de votação registrados no banco,
+    descriptografando cada um antes de exibir.
+
+    Args:
+        Nenhum.
+
+    Returns:
+        None: Imprime os protocolos descriptografados no terminal.
+    """
     conexao = conectar()
     cursor = conexao.cursor()
 

@@ -3,6 +3,17 @@ from Códigos_fonte.conexao import conectar
 from Votacao.log import registrar_log
 
 def executar_encerramento_logica():
+
+    """
+    Valida as credenciais do mesário para autorizar o encerramento da votação e consolidar os resultados.
+
+    Args:
+        Nenhum.
+
+    Returns:
+        bool: Retorna True se a votação for encerrada com sucesso, False caso contrário.
+    """
+
     conn = conectar()
     cursor = conn.cursor()
 

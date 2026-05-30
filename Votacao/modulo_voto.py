@@ -1,6 +1,17 @@
 from conexao import conectar
 
 def realizar_votacao():
+
+    """
+    Realiza uma inserção direta e simples de voto no banco de dados.
+
+    Args:
+        Nenhum.
+
+    Returns:
+        None: Não possui retorno de valor.
+    """
+    
     conexao = conectar()
     cursor = conexao.cursor()
 

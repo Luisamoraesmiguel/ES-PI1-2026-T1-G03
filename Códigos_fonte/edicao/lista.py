@@ -1,6 +1,16 @@
 from conexao import conectar
 
 def listar_eleitores():
+    """
+    Recupera e exibe todos os eleitores cadastrados no banco,
+    mostrando nome, título e status de mesário de cada um.
+
+    Args:
+        Nenhum.
+
+    Returns:
+        None: Imprime a lista de eleitores no terminal.
+    """
     from conexao import conectar
     conexao = conectar()
     cursor = conexao.cursor()
@@ -19,6 +29,16 @@ def listar_eleitores():
     input("\nPressione Enter para voltar...")
    
 def listar_candidatos():
+    """
+    Recupera e exibe todos os candidatos cadastrados no banco,
+    mostrando nome, partido e número de votação de cada um.
+
+    Args:
+        Nenhum.
+
+    Returns:
+        None: Imprime a lista de candidatos no terminal.
+    """
     conexao = conectar()
     cursor = conexao.cursor()
     cursor.execute("SELECT nome, partido, num_votacao FROM candidatos")

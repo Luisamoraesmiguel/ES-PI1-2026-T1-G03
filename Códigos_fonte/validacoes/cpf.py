@@ -1,4 +1,14 @@
 def validar_cpf(cpf):
+    """
+    Verifica se um CPF informado é válido de acordo com o cálculo dos dígitos verificadores. 
+    
+    Args: 
+        cpf (str): CPF informado pelo usuário, podendo conter pontos e hífen. 
+       
+    Returns: 
+        bool: Retorna True se o CPF for válido e False caso contrário. 
+    """
+
     cpf = ''.join(filter(str.isdigit, cpf))  
     if len(cpf) != 11 or cpf == cpf[0] * 11:
         return False

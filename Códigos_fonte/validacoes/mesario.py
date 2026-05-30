@@ -2,6 +2,16 @@ from conexao import conectar
 from Criptografia import cifrar, decifrar
 
 def verificar_mesario(titulo, cpf_4digitos, chave):
+    """ 
+    Verifica se um usuário é autorizado como mesário no sistema. 
+    
+    Args: 
+        titulo (str): Número do título de eleitor informado. cpf_4digitos (str | int): Quatro primeiros dígitos do CPF para conferência. chave (str): Chave de acesso do usuário. 
+        
+    Returns: 
+        dict | str: Retorna um dicionário contendo o nome do mesário autorizado ou as mensagens "INVALIDO", "NAO_AUTORIZADO" ou "CPF_INCORRETO". 
+    
+    """
     conexao = conectar()
     cursor = conexao.cursor()
     

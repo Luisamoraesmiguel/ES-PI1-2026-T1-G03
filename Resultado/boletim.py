@@ -1,6 +1,16 @@
 from conexao import conectar
 
 def boletim_da_urna():
+    """
+    Exibe o boletim de urna com a contagem de votos por candidato
+    e destaca o vencedor da eleição.
+
+    Args:
+        Nenhum.
+
+    Returns:
+        None: Imprime o boletim e o vencedor no terminal.
+    """
     conexao = conectar()
     cursor = conexao.cursor()
 

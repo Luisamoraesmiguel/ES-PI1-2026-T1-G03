@@ -3,6 +3,19 @@ import os
 import mysql.connector
 
 def zerezima():
+
+    """
+    Zera os votos do banco de dados e reinicia o status de votação
+    de todos os eleitores, preparando a urna para uma nova eleição.
+    Exibe a lista de candidatos com votos zerados ao final.
+
+    Args:
+        Nenhum.
+
+    Returns:
+        bool: True após a zerezima ser concluída com sucesso.
+    """
+    
     os.system('cls')  
     print("\n== ZEREZIMA ==")
 

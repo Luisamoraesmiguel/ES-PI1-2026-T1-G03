@@ -3,12 +3,15 @@ import Criptografia
 
 def buscar_eleitor(dado):
     """
-    Busca um eleitor utilizando a conexão própria e Cifra de Hill.
-    
+    Busca um eleitor no banco pelo CPF ou pelo título eleitoral.
+    O CPF é cifrado antes da consulta pois é armazenado criptografado.
+
     Args:
-        dado (str): CPF ou Título digitado pelo usuário.
+        dado (str): CPF (11 dígitos) ou número do título eleitoral.
+
     Returns:
-        dict: Dados do eleitor ou None se não encontrado.
+        dict: Dicionário com nome, cpf, titulo e mesario do eleitor,
+              ou None se não encontrado.
     """
     termo = dado.strip()
 
@@ -47,6 +50,16 @@ def buscar_eleitor(dado):
     return resultado
 
 def buscar_candidato(numero):
+    """
+    Busca um candidato no banco de dados pelo número de votação.
+
+    Args:
+        numero (str ou int): Número de votação do candidato.
+
+    Returns:
+        dict: Dicionário com id, nome, numero e partido do candidato,
+              ou None se não encontrado.
+    """
     conexao = conectar()
     cursor = conexao.cursor()
     
