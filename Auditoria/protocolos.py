@@ -45,8 +45,8 @@ def exibir_protocolos():
     if not resultados:
         print("Nenhum protocolo registrado.")
     else:
-        for i, (protocolo,) in enumerate(resultados, start=1):
-            protocolo_decifrado = descriptografar_protocolo(protocolo)
-            print(f"{i}. {protocolo_decifrado}")
+        for i, protocolo in enumerate(resultados_decifrados, start=1):
+
+            print(f"{i}. {protocolo}")
 
     input("\nPressione Enter para continuar...")

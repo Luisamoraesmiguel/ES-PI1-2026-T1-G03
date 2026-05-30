@@ -227,15 +227,10 @@ def menu_votacao():
     print("\n== MENU DE OPERAÇÃO DA URNA ==")
     print("\n1- Votar")
     print("2- Encerrar Votação")
-    print("0- Voltar")
         
     i=int(input("\nEscolha a Opção Desejada: "))
 
-
-    if(i==0):
-        sistema_votacao()
-
-    elif(i==1):
+    if(i==1):
         realizar_fluxo_votacao()
 
     elif(i==2):
