@@ -1,5 +1,5 @@
 import mysql.connector
-from Códigos_fonte.conexao import conectar
+from conexao import conectar
 from Votacao.log import registrar_log
 
 def executar_encerramento_logica():

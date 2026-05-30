@@ -1,6 +1,6 @@
 import os
 # Importação absoluta a partir da raiz do projeto
-from Códigos_fonte.conexao import conectar
+from conexao import conectar
 from Votacao.log import exibir_logs
 
 def consultar_auditoria():
