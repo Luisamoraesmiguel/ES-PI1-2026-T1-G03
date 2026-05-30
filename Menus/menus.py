@@ -272,11 +272,14 @@ def encerramento_votacao():
                     status = "concluido"
                 else:
                     print("\n[ERRO] A confirmação da chave falhou. Tente novamente.")
+                    menu_votacao()
             else:
                 print("\nEncerramento cancelado.")
                 status = "concluido"
+                menu_votacao()
         else:
             print("\n[ERRO] Dados incorretos. Tente novamente.")
+            menu_votacao()
 
     input("\nPressione Enter para retornar ao menu.")
     sistema_votacao()
