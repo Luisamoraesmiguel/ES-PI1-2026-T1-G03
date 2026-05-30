@@ -2,7 +2,7 @@ import os
 from Códigos_fonte.validacoes.mesario import verificar_mesario
 from Códigos_fonte.zerezima import zerezima
 from Votacao.log import registrar_log
-from Menus.menus import menu_votacao
+
 
 def abertura_votacao():
 
@@ -47,6 +47,5 @@ def abertura_votacao():
 
     print("\nZerezima realizada com sucesso!")
     
-    # Chama o menu e encerra a função
-    menu_votacao()
+
     return True
